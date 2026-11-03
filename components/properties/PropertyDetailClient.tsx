@@ -133,20 +133,20 @@ export default function PropertyDetailClient({
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-24 md:py-8 w-full">
         
         {/* Breadcrumb & Navigation */}
-        <div className="flex items-center justify-between gap-4 mb-6 text-xs text-stone-500">
-          <div className="flex items-center gap-2">
-            <Link href="/" className="hover:text-stone-900 transition-colors">Home</Link>
-            <span aria-hidden="true">/</span>
-            <Link href="/properties" className="hover:text-stone-900 transition-colors">Properties</Link>
-            <span aria-hidden="true">/</span>
-            <span className="text-[#171717] font-medium truncate max-w-xs">{property.title}</span>
+        <div className="flex flex-wrap items-center justify-between gap-2.5 mb-6 text-xs text-stone-500">
+          <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 max-w-[calc(100%-90px)] sm:max-w-none">
+            <Link href="/" className="hover:text-stone-900 transition-colors shrink-0">Home</Link>
+            <span aria-hidden="true" className="shrink-0">/</span>
+            <Link href="/properties" className="hover:text-stone-900 transition-colors shrink-0">Properties</Link>
+            <span aria-hidden="true" className="shrink-0">/</span>
+            <span className="text-[#171717] font-medium truncate">{property.title}</span>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="shrink-0">
             <SharePageButton
               title={property.title}
               text={`Explore ${property.title} at ${property.location.locality}, ${property.location.city} with Signature Aura Developers`}
-              buttonLabel="Share Residence"
+              buttonLabel="Share"
               variant="luxury"
               size="sm"
             />

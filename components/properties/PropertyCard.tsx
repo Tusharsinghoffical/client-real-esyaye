@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 import { Property } from '@/types/real-estate';
 import { getOptimizedImageUrl, SHIMMER_BLUR_DATA_URL } from '@/lib/utils';
-import SharePageButton from '@/components/common/SharePageButton';
 
 interface PropertyCardProps {
   property: Property;
@@ -102,24 +101,14 @@ export default function PropertyCard({ property, viewMode = 'grid' }: PropertyCa
             </span>
           </div>
 
-          {/* Action buttons (Share & Favorite) */}
-          <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
-            <SharePageButton
-              variant="icon"
-              size="sm"
-              url={`/properties/${property.slug}`}
-              title={property.title}
-              text={`Discover luxury residence: ${property.title} in ${property.location.city} on Signature Aura Developers`}
-              buttonLabel="Share Property"
-            />
-            <button
-              onClick={toggleSave}
-              aria-label={isSaved ? "Remove from saved" : "Save property"}
-              className="w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#171717] flex items-center justify-center shadow-md transition-all touch-manipulation"
-            >
-              <Heart className={`w-4 h-4 ${isSaved ? 'fill-red-500 text-red-500' : 'text-stone-700'}`} />
-            </button>
-          </div>
+          {/* Save Button */}
+          <button
+            onClick={toggleSave}
+            aria-label={isSaved ? "Remove from saved" : "Save property"}
+            className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-[#171717] flex items-center justify-center shadow-md transition-all touch-manipulation z-10"
+          >
+            <Heart className={`w-4 h-4 ${isSaved ? 'fill-red-500 text-red-500' : 'text-stone-700'}`} />
+          </button>
         </div>
 
         {/* Content column */}
@@ -231,25 +220,14 @@ export default function PropertyCard({ property, viewMode = 'grid' }: PropertyCa
           </span>
         </div>
 
-        {/* Action buttons (Share & Favorite) */}
-        <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
-          <SharePageButton
-            variant="icon"
-            size="sm"
-            url={`/properties/${property.slug}`}
-            title={property.title}
-            text={`Discover luxury residence: ${property.title} in ${property.location.city} on Signature Aura Developers`}
-            buttonLabel="Share Property"
-            className="bg-[#0D0D0F]/70 hover:bg-[#0D0D0F] text-white border-white/15"
-          />
-          <button
-            onClick={toggleSave}
-            aria-label={isSaved ? "Remove from saved" : "Save property"}
-            className="w-8 h-8 rounded-full bg-[#0D0D0F]/70 hover:bg-[#0D0D0F] text-white backdrop-blur-md flex items-center justify-center border border-white/15 transition-all shadow touch-manipulation"
-          >
-            <Heart className={`w-4 h-4 ${isSaved ? 'fill-[#D4AF37] text-[#D4AF37]' : 'text-stone-300'}`} />
-          </button>
-        </div>
+        {/* Save to favorites button */}
+        <button
+          onClick={toggleSave}
+          aria-label={isSaved ? "Remove from saved" : "Save property"}
+          className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#0D0D0F]/70 hover:bg-[#0D0D0F] text-white backdrop-blur-md flex items-center justify-center border border-white/15 transition-all shadow touch-manipulation z-10"
+        >
+          <Heart className={`w-4 h-4 ${isSaved ? 'fill-[#D4AF37] text-[#D4AF37]' : 'text-stone-300'}`} />
+        </button>
 
         {/* Price Tag Overlay with Champagne Gold Font */}
         <div className="absolute bottom-3 left-3 bg-[#0D0D0F]/90 backdrop-blur-md border border-white/10 text-white px-3 py-1.5 rounded-lg shadow-md">
