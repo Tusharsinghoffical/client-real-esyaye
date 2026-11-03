@@ -92,7 +92,17 @@ export default function AboutPage() {
             />
           </div>
 
-          <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+            <div className="relative w-20 h-20 sm:w-24 sm:h-24 mb-6 drop-shadow-xl">
+              <Image
+                src="/assets/branding/logo-circle.png"
+                alt="Signature Aura Developers Emblem"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+
             <span className="text-xs font-semibold tracking-widest text-[#B99A63] uppercase block mb-3">
               Corporate Heritage & Ethos
             </span>

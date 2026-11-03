@@ -5,8 +5,15 @@ import { BUSINESS_CONFIG, getWhatsAppLink } from '@/lib/config';
 import { retrieveWebsiteKnowledge } from '@/lib/rag/knowledge-retriever';
 
 // Gemini client initialization
-const apiKey = process.env.GEMINI_API_KEY;
-const ai = apiKey ? new GoogleGenAI({ apiKey }) : null;
+const rawApiKey = process.env.GEMINI_API_KEY;
+const isRealApiKey = Boolean(
+  rawApiKey &&
+  rawApiKey.trim() !== '' &&
+  rawApiKey !== 'MY_GEMINI_API_KEY' &&
+  !rawApiKey.includes('YOUR_') &&
+  rawApiKey.length > 15
+);
+const ai = isRealApiKey ? new GoogleGenAI({ apiKey: rawApiKey! }) : null;
 
 // In-memory sliding window rate limiter
 interface RateLimitRecord {

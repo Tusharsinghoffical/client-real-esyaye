@@ -344,13 +344,12 @@ export default function PropertyAssistantModal({
           className="flex items-center gap-2.5 sm:gap-3 bg-[#171717] hover:bg-[#222222] text-white border border-[#B99A63]/70 rounded-full py-2.5 px-3.5 sm:px-4 shadow-2xl transition-all cursor-pointer group active:scale-95 touch-manipulation min-h-[48px]"
         >
           <div className="relative shrink-0">
-            <div className="w-8 h-8 rounded-full bg-white p-0.5 flex items-center justify-center border border-[#B99A63]/80 overflow-hidden shadow-xs">
+            <div className="w-8 h-8 rounded-full flex items-center justify-center overflow-hidden shadow-xs">
               <Image
-                src="/assets/aistudio/Navy_and_Gold_SA_Emblem_5fd307f4.png"
-                alt="Signature Aura Logo"
+                src="/assets/branding/logo-circle.png"
+                alt="Signature Aura Developers"
                 fill
-                className="object-contain p-0.5"
-                referrerPolicy="no-referrer"
+                className="object-contain"
               />
             </div>
             <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#171717]" />
@@ -442,14 +441,13 @@ export default function PropertyAssistantModal({
         <div className="bg-[#171717] text-white px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between border-b border-[#2D2D2D] shrink-0 pt-[max(0.25rem,env(safe-area-inset-top))] sm:pt-3">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <div className="relative shrink-0">
-              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white p-0.5 flex items-center justify-center border border-[#B99A63]/80 overflow-hidden shadow-md">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center overflow-hidden shadow-md">
                 <Image
-                  src="/assets/aistudio/Navy_and_Gold_SA_Emblem_5fd307f4.png"
-                  alt="Signature Aura Logo"
+                  src="/assets/branding/logo-circle.png"
+                  alt="Signature Aura Developers"
                   fill
-                  className="object-contain p-0.5"
+                  className="object-contain"
                   priority
-                  referrerPolicy="no-referrer"
                 />
               </div>
               <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#171717]" />
@@ -623,11 +621,28 @@ export default function PropertyAssistantModal({
                         : 'bg-white border border-[#E8E5DF] text-[#222222] rounded-bl-none shadow-xs'
                     }`}
                   >
-                    {/* Assistant RAG Grounding Indicator Pill */}
-                    {msg.role === 'assistant' && msg.isRagGrounded && (
-                      <div className="flex items-center gap-1.5 text-[10px] font-semibold text-[#B99A63] tracking-wider uppercase mb-2 border-b border-[#F0ECE1] pb-1.5">
-                        <Database className="w-3 h-3 text-[#B99A63]" />
-                        <span>Verified Website Data (RAG Grounded)</span>
+                    {/* Assistant Brand & RAG Grounding Header */}
+                    {msg.role === 'assistant' && (
+                      <div className="flex items-center justify-between gap-2 mb-2 border-b border-[#F0ECE1] pb-1.5">
+                        <div className="flex items-center gap-1.5">
+                          <div className="relative w-4 h-4 rounded-full overflow-hidden shrink-0">
+                            <Image
+                              src="/assets/branding/logo-circle.png"
+                              alt="Signature Aura"
+                              fill
+                              className="object-contain"
+                            />
+                          </div>
+                          <span className="text-[10px] font-semibold text-[#171717] tracking-wider uppercase">
+                            Signature Aura
+                          </span>
+                        </div>
+                        {msg.isRagGrounded && (
+                          <div className="flex items-center gap-1 text-[9px] font-semibold text-[#B99A63] tracking-wider uppercase">
+                            <Database className="w-2.5 h-2.5 text-[#B99A63]" />
+                            <span>RAG Grounded</span>
+                          </div>
+                        )}
                       </div>
                     )}
 
@@ -847,6 +862,7 @@ export default function PropertyAssistantModal({
                           placeholder="e.g. Vikram Malhotra"
                           value={bookingForm.fullName}
                           onChange={(e) => setBookingForm({ ...bookingForm, fullName: e.target.value })}
+                          suppressHydrationWarning
                           className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3 py-2.5 rounded-lg text-base sm:text-xs min-h-[44px]"
                         />
                       </div>
@@ -858,6 +874,7 @@ export default function PropertyAssistantModal({
                           placeholder="+91 98200 XXXXX"
                           value={bookingForm.phone}
                           onChange={(e) => setBookingForm({ ...bookingForm, phone: e.target.value })}
+                          suppressHydrationWarning
                           className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3 py-2.5 rounded-lg text-base sm:text-xs min-h-[44px]"
                         />
                       </div>
@@ -872,6 +889,7 @@ export default function PropertyAssistantModal({
                           placeholder="vikram@example.com"
                           value={bookingForm.email}
                           onChange={(e) => setBookingForm({ ...bookingForm, email: e.target.value })}
+                          suppressHydrationWarning
                           className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3 py-2.5 rounded-lg text-base sm:text-xs min-h-[44px]"
                         />
                       </div>
@@ -883,6 +901,7 @@ export default function PropertyAssistantModal({
                           min={new Date().toISOString().split('T')[0]}
                           value={bookingForm.visitDate}
                           onChange={(e) => setBookingForm({ ...bookingForm, visitDate: e.target.value })}
+                          suppressHydrationWarning
                           className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3 py-2.5 rounded-lg text-base sm:text-xs min-h-[44px]"
                         />
                       </div>
@@ -934,6 +953,7 @@ export default function PropertyAssistantModal({
                 onKeyDown={(e) => {
                   if (e.key === 'Enter') handleSend();
                 }}
+                suppressHydrationWarning
                 placeholder="Ask about Worli penthouses, Pune Baner-Sus, RERA, prices..."
                 className="flex-1 bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-4 py-3 rounded-xl text-base sm:text-xs text-[#171717] placeholder:text-[#999999] min-h-[48px]"
               />

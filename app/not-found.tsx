@@ -12,8 +12,14 @@ export default function NotFound() {
 
       <main className="flex-1 flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto w-full text-center">
         <div className="bg-white border border-[#E8E5DF] rounded-3xl p-8 sm:p-14 shadow-sm space-y-6 w-full max-w-2xl">
-          <div className="w-16 h-16 rounded-full bg-[#FAF9F5] border border-[#E8E5DF] flex items-center justify-center text-[#B99A63] mx-auto shadow-2xs">
-            <Building2 className="w-8 h-8 text-[#B99A63]" />
+          <div className="relative w-20 h-20 mx-auto drop-shadow-md">
+            <Image
+              src="/assets/branding/logo-circle.png"
+              alt="Signature Aura Developers"
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
 
           <div className="space-y-2">

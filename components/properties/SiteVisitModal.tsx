@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { 
   Calendar, 
   Clock, 
@@ -96,16 +97,26 @@ export default function SiteVisitModal({
           <X className="w-5 h-5" />
         </button>
 
-        <div className="mb-6">
-          <span className="text-xs font-semibold tracking-widest text-[#B99A63] uppercase">
-            Private Viewing Arrangement
-          </span>
-          <h3 className="font-serif text-2xl text-[#171717] mt-1">
-            Schedule a Site Visit
-          </h3>
-          <p className="text-xs text-stone-600 mt-1 line-clamp-1">
-            Property: <strong className="text-stone-900">{property.title}</strong>
-          </p>
+        <div className="mb-6 flex items-start gap-3.5">
+          <div className="relative w-12 h-12 shrink-0 drop-shadow-sm">
+            <Image
+              src="/assets/branding/logo-circle.png"
+              alt="Signature Aura Developers"
+              fill
+              className="object-contain"
+            />
+          </div>
+          <div>
+            <span className="text-xs font-semibold tracking-widest text-[#B99A63] uppercase">
+              Private Viewing Arrangement
+            </span>
+            <h3 className="font-serif text-2xl text-[#171717] mt-0.5">
+              Schedule a Site Visit
+            </h3>
+            <p className="text-xs text-stone-600 mt-1 line-clamp-1">
+              Property: <strong className="text-stone-900">{property.title}</strong>
+            </p>
+          </div>
         </div>
 
         {isSuccess ? (
@@ -135,6 +146,7 @@ export default function SiteVisitModal({
                   placeholder="e.g. Radhika Singhal"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                  suppressHydrationWarning
                   className="w-full bg-white border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded text-base sm:text-sm text-[#171717]"
                 />
               </div>
@@ -149,6 +161,7 @@ export default function SiteVisitModal({
                   placeholder="+91 88056 21111"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  suppressHydrationWarning
                   className="w-full bg-white border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded text-base sm:text-sm text-[#171717]"
                 />
               </div>
@@ -165,6 +178,7 @@ export default function SiteVisitModal({
                   placeholder="radhika@familyoffice.in"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  suppressHydrationWarning
                   className="w-full bg-white border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded text-base sm:text-sm text-[#171717]"
                 />
               </div>
@@ -179,6 +193,7 @@ export default function SiteVisitModal({
                   min={new Date().toISOString().split('T')[0]}
                   value={formData.visitDate}
                   onChange={(e) => setFormData({ ...formData, visitDate: e.target.value })}
+                  suppressHydrationWarning
                   className="w-full bg-white border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded text-base sm:text-sm text-[#171717]"
                 />
               </div>

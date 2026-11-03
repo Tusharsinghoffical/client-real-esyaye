@@ -33,9 +33,16 @@ import PropertyCard from '@/components/properties/PropertyCard';
 import { SAMPLE_PROPERTIES } from '@/lib/data/sample-data';
 import { getPropertyBySlug, getSimilarProperties } from '@/lib/db';
 import { getWhatsAppLink } from '@/lib/config';
+import { Property } from '@/types/real-estate';
 
-export default function PropertyDetailClient({ slug }: { slug: string }) {
-  const property = getPropertyBySlug(slug) || SAMPLE_PROPERTIES.find(p => p.slug === slug);
+export default function PropertyDetailClient({ 
+  slug, 
+  initialProperty 
+}: { 
+  slug: string; 
+  initialProperty?: Property;
+}) {
+  const property = initialProperty || getPropertyBySlug(slug) || SAMPLE_PROPERTIES.find(p => p.slug === slug);
 
   if (!property) {
     notFound();
@@ -123,7 +130,7 @@ export default function PropertyDetailClient({ slug }: { slug: string }) {
   const whatsappDirectHref = getWhatsAppLink(
     undefined, 
     property.title, 
-    typeof window !== 'undefined' ? window.location.href : undefined
+    `/properties/${property.slug}`
   );
 
   return (
@@ -535,6 +542,7 @@ export default function PropertyDetailClient({ slug }: { slug: string }) {
                       placeholder="Your Full Name"
                       value={enquiryForm.fullName}
                       onChange={(e) => setEnquiryForm({ ...enquiryForm, fullName: e.target.value })}
+                      suppressHydrationWarning
                       className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3 py-2 rounded text-base sm:text-xs text-[#171717]"
                     />
                   </div>
@@ -549,6 +557,7 @@ export default function PropertyDetailClient({ slug }: { slug: string }) {
                       placeholder="+91 88056 21111"
                       value={enquiryForm.phone}
                       onChange={(e) => setEnquiryForm({ ...enquiryForm, phone: e.target.value })}
+                      suppressHydrationWarning
                       className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3 py-2 rounded text-base sm:text-xs text-[#171717]"
                     />
                   </div>
@@ -563,6 +572,7 @@ export default function PropertyDetailClient({ slug }: { slug: string }) {
                       placeholder="name@domain.com"
                       value={enquiryForm.email}
                       onChange={(e) => setEnquiryForm({ ...enquiryForm, email: e.target.value })}
+                      suppressHydrationWarning
                       className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3 py-2 rounded text-base sm:text-xs text-[#171717]"
                     />
                   </div>
@@ -576,6 +586,7 @@ export default function PropertyDetailClient({ slug }: { slug: string }) {
                       min={new Date().toISOString().split('T')[0]}
                       value={enquiryForm.preferredVisitDate}
                       onChange={(e) => setEnquiryForm({ ...enquiryForm, preferredVisitDate: e.target.value })}
+                      suppressHydrationWarning
                       className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3 py-2 rounded text-base sm:text-xs text-[#171717]"
                     />
                   </div>

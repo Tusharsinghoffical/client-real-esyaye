@@ -179,14 +179,13 @@ export default function HomePage() {
             
             {/* Editorial kicker with SA Emblem */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-stone-200 text-xs tracking-widest uppercase mb-4 sm:mb-6 shadow-md">
-              <div className="relative w-5 h-5 shrink-0 overflow-hidden rounded bg-white p-0.5">
+              <div className="relative w-6 h-6 shrink-0 drop-shadow-sm">
                 <Image
-                  src="/assets/aistudio/Navy_and_Gold_SA_Emblem_5fd307f4.png"
-                  alt="Signature Aura Emblem"
+                  src="/assets/branding/logo-circle.png"
+                  alt="Signature Aura Developers Emblem"
                   fill
                   className="object-contain"
                   priority
-                  referrerPolicy="no-referrer"
                 />
               </div>
               <span className="font-medium tracking-wider">Curated Indian Luxury Real Estate</span>
@@ -304,6 +303,7 @@ export default function HomePage() {
                       placeholder="e.g. Sea Face, Private Pool..."
                       value={keyword}
                       onChange={(e) => setKeyword(e.target.value)}
+                      suppressHydrationWarning
                       className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none pl-9 pr-3 py-2.5 min-h-[44px] rounded-lg text-base sm:text-sm text-[#171717] placeholder:text-stone-400"
                     />
                   </div>
@@ -1055,6 +1055,7 @@ export default function HomePage() {
                           placeholder="Your Name"
                           value={homeContact.name}
                           onChange={(e) => setHomeContact({ ...homeContact, name: e.target.value })}
+                          suppressHydrationWarning
                           className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3 py-2 rounded text-base sm:text-xs text-[#171717]"
                         />
                       </div>
@@ -1070,6 +1071,7 @@ export default function HomePage() {
                             placeholder="+91 88056 21111"
                             value={homeContact.phone}
                             onChange={(e) => setHomeContact({ ...homeContact, phone: e.target.value })}
+                            suppressHydrationWarning
                             className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3 py-2 rounded text-base sm:text-xs text-[#171717]"
                           />
                         </div>
@@ -1084,6 +1086,7 @@ export default function HomePage() {
                             placeholder="name@domain.com"
                             value={homeContact.email}
                             onChange={(e) => setHomeContact({ ...homeContact, email: e.target.value })}
+                            suppressHydrationWarning
                             className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3 py-2 rounded text-base sm:text-xs text-[#171717]"
                           />
                         </div>

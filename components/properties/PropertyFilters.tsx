@@ -127,6 +127,7 @@ export default function PropertyFilters({
             type="text"
             value={filters.searchQuery}
             onChange={(e) => onChange({ searchQuery: e.target.value })}
+            suppressHydrationWarning
             placeholder="Search by locality (Worli, Assagao, Baner-Sus, BKC), property name, or keywords..."
             className="w-full pl-10 pr-9 py-2.5 bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none rounded-xl text-sm text-[#171717] placeholder:text-stone-400 min-h-[44px]"
           />
@@ -323,6 +324,7 @@ export default function PropertyFilters({
                   step="0.5"
                   value={filters.minPriceCr}
                   onChange={(e) => onChange({ minPriceCr: e.target.value, pricePreset: 'all' })}
+                  suppressHydrationWarning
                   className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3 py-2.5 min-h-[44px] rounded-xl text-xs text-[#171717]"
                 />
                 <span className="text-stone-400 text-xs">-</span>
@@ -332,6 +334,7 @@ export default function PropertyFilters({
                   step="0.5"
                   value={filters.maxPriceCr}
                   onChange={(e) => onChange({ maxPriceCr: e.target.value, pricePreset: 'all' })}
+                  suppressHydrationWarning
                   className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3 py-2.5 min-h-[44px] rounded-xl text-xs text-[#171717]"
                 />
               </div>

@@ -24,8 +24,16 @@ import FloatingContactSystem from '@/components/floating/FloatingContactSystem';
 import { SAMPLE_PROJECTS } from '@/lib/data/sample-data';
 import { getWhatsAppLink } from '@/lib/config';
 
-export default function ProjectDetailClient({ slug }: { slug: string }) {
-  const project = SAMPLE_PROJECTS.find(p => p.slug === slug);
+import { ProjectDevelopment } from '@/types/real-estate';
+
+export default function ProjectDetailClient({ 
+  slug, 
+  initialProject 
+}: { 
+  slug: string; 
+  initialProject?: ProjectDevelopment;
+}) {
+  const project = initialProject || SAMPLE_PROJECTS.find(p => p.slug === slug);
 
   if (!project) {
     notFound();
@@ -176,6 +184,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                     placeholder="Your Full Name"
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    suppressHydrationWarning
                     className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3 py-2 rounded text-base sm:text-xs"
                   />
                   <input
@@ -184,6 +193,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                     placeholder="+91 Contact Number"
                     value={form.phone}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                    suppressHydrationWarning
                     className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3 py-2 rounded text-base sm:text-xs"
                   />
                   <input
@@ -192,6 +202,7 @@ export default function ProjectDetailClient({ slug }: { slug: string }) {
                     placeholder="Official Email"
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    suppressHydrationWarning
                     className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3 py-2 rounded text-base sm:text-xs"
                   />
                   <button

@@ -94,7 +94,7 @@ export default function FloatingContactSystem() {
   const whatsappHref = getWhatsAppLink(
     undefined, 
     pagePropertyTitle, 
-    typeof window !== 'undefined' ? window.location.href : undefined
+    pathname !== '/' ? pathname : undefined
   );
 
   return (
@@ -116,20 +116,19 @@ export default function FloatingContactSystem() {
             <button
               onClick={() => setIsChatModalOpen(true)}
               aria-label="Ask AI Property Assistant"
-              className="touch-manipulation w-13 h-13 min-w-[52px] min-h-[52px] rounded-full bg-[#171717] hover:bg-[#B99A63] text-white flex items-center justify-center shadow-xl border border-[#B99A63]/70 hover:scale-105 transition-all relative active:scale-95 overflow-hidden group/btn"
+              className="touch-manipulation w-13 h-13 min-w-[52px] min-h-[52px] rounded-full bg-[#171717] hover:bg-[#B99A63] text-white flex items-center justify-center shadow-xl border-2 border-[#B99A63] hover:scale-105 transition-all relative active:scale-95 overflow-hidden group/btn p-1"
             >
-              <div className="relative w-8 h-8 rounded-full bg-white p-0.5 overflow-hidden flex items-center justify-center border border-[#B99A63]/80">
+              <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center">
                 <Image
-                  src="/assets/aistudio/Navy_and_Gold_SA_Emblem_5fd307f4.png"
-                  alt="SA Emblem Logo"
+                  src="/assets/branding/logo-circle.png"
+                  alt="Signature Aura Assistant"
                   fill
-                  className="object-contain p-0.5"
-                  referrerPolicy="no-referrer"
+                  className="object-contain"
                 />
               </div>
-              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B99A63] opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#B99A63]"></span>
+                <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-[#B99A63] border-2 border-[#171717]"></span>
               </span>
             </button>
           </div>
@@ -206,20 +205,19 @@ export default function FloatingContactSystem() {
           <button
             onClick={() => setIsChatModalOpen(true)}
             aria-label="Open AI property assistant"
-            className="touch-manipulation w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-[#171717] border border-[#B99A63]/70 text-white flex items-center justify-center shadow-2xl active:scale-95 transition-transform relative"
+            className="touch-manipulation w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-[#171717] border-2 border-[#B99A63] text-white flex items-center justify-center shadow-2xl active:scale-95 transition-transform relative p-0.5"
           >
-            <div className="relative w-7 h-7 rounded-full bg-white p-0.5 overflow-hidden flex items-center justify-center border border-[#B99A63]/80">
+            <div className="relative w-full h-full rounded-full overflow-hidden flex items-center justify-center">
               <Image
-                src="/assets/aistudio/Navy_and_Gold_SA_Emblem_5fd307f4.png"
-                alt="SA Emblem Logo"
+                src="/assets/branding/logo-circle.png"
+                alt="Signature Aura Developers"
                 fill
-                className="object-contain p-0.5"
-                referrerPolicy="no-referrer"
+                className="object-contain"
               />
             </div>
             <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B99A63] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#B99A63]"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-[#B99A63] border border-[#171717]"></span>
             </span>
           </button>
 
@@ -305,6 +303,7 @@ export default function FloatingContactSystem() {
                       placeholder="e.g. Vikram Malhotra"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                      suppressHydrationWarning
                       className="w-full bg-white border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded text-base sm:text-sm text-[#171717]"
                     />
                   </div>
@@ -319,6 +318,7 @@ export default function FloatingContactSystem() {
                       placeholder="+91 88056 21111"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      suppressHydrationWarning
                       className="w-full bg-white border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded text-base sm:text-sm text-[#171717]"
                     />
                   </div>
@@ -335,6 +335,7 @@ export default function FloatingContactSystem() {
                       placeholder="vikram@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      suppressHydrationWarning
                       className="w-full bg-white border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded text-base sm:text-sm text-[#171717]"
                     />
                   </div>

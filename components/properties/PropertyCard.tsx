@@ -157,7 +157,7 @@ export default function PropertyCard({ property, viewMode = 'grid' }: PropertyCa
               )}
               <div className="flex items-center gap-1.5">
                 <Maximize2 className="w-4 h-4 text-[#B99A63]" />
-                <span>{property.carpetAreaSqFt.toLocaleString('en-IN')} sq.ft. carpet</span>
+                <span>{(property.carpetAreaSqFt || 0).toLocaleString('en-IN')} sq.ft. carpet</span>
               </div>
             </div>
           </div>
@@ -283,7 +283,7 @@ export default function PropertyCard({ property, viewMode = 'grid' }: PropertyCa
             {property.bathrooms > 0 && (
               <span title={`${property.bathrooms} Bathrooms`}>· {property.bathrooms} Baths</span>
             )}
-            <span>· {property.carpetAreaSqFt.toLocaleString('en-IN')} sq.ft.</span>
+            <span>· {(property.carpetAreaSqFt || 0).toLocaleString('en-IN')} sq.ft.</span>
           </div>
 
           <Link

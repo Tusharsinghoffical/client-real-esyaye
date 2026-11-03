@@ -20,27 +20,18 @@ export default function Footer() {
           
           {/* Brand & Advisory Overview */}
           <div className="lg:col-span-2 space-y-4">
-            <Link href="/" className="inline-flex items-center gap-3 group">
-              <div className="relative w-11 h-11 shrink-0 overflow-hidden rounded-xl bg-white p-0.5 border border-[#B99A63]/50 shadow-md">
+            <Link href="/" className="inline-block group">
+              <div className="relative w-64 sm:w-72 h-32 sm:h-36 overflow-hidden rounded-2xl border border-[#B99A63]/30 shadow-xl group-hover:border-[#B99A63] transition-all bg-black/80">
                 <Image
-                  src="/assets/aistudio/Navy_and_Gold_SA_Emblem_5fd307f4.png"
-                  alt="Signature Aura Emblem"
+                  src="/assets/branding/logo-combined.jpg"
+                  alt="Signature Aura Developers - Premier Real Estate"
                   fill
-                  className="object-contain"
-                  referrerPolicy="no-referrer"
+                  className="object-contain p-1.5 group-hover:scale-102 transition-transform duration-500"
                 />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-serif text-xl sm:text-2xl tracking-[0.15em] font-normal text-white group-hover:text-[#E8DFD0] transition-colors uppercase flex items-center">
-                  Signature Aura<span className="text-xs text-[#B99A63] ml-1">™</span>
-                </span>
-                <span className="text-[9px] sm:text-[10px] tracking-[0.28em] text-[#B99A63] uppercase -mt-0.5 font-sans">
-                  Pvt. Ltd. · Real Estate Advisory
-                </span>
               </div>
             </Link>
             <p className="text-stone-400 text-sm leading-relaxed max-w-md font-normal">
-              Signature Aura Pvt. Ltd. represents private clients, corporate leaders, and family offices in the acquisition, leasing, and strategic management of distinguished residential penthouses, luxury villas, and Grade-A commercial properties.
+              Signature Aura Developers represents private clients, corporate leaders, and family offices in the acquisition, leasing, and strategic development of distinguished residential penthouses, luxury villas, and Grade-A commercial properties.
             </p>
           </div>
 
@@ -155,7 +146,7 @@ export default function Footer() {
         {/* Bottom Bar: Copyright, Legal & Compliance */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-400">
           <div className="text-center sm:text-left">
-            <p>© {new Date().getFullYear()} Signature Aura Pvt. Ltd. All rights reserved.</p>
+            <p suppressHydrationWarning>© {new Date().getFullYear()} Signature Aura Pvt. Ltd. All rights reserved.</p>
           </div>
           <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 sm:gap-6">
             <Link href="/privacy-policy" className="hover:text-white transition-colors">

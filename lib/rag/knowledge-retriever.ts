@@ -105,7 +105,7 @@ export function retrieveWebsiteKnowledge(userQuery: string): RagRetrievalResult 
     content: `Property Title: ${p.title}
 Listing Type: For ${p.listingType === 'buy' ? 'Sale' : 'Lease/Rent'}
 Property Type: ${p.propertyType} (${p.bedrooms > 0 ? `${p.bedrooms} BHK` : 'Commercial'})
-Price: ${p.priceDisplay} (₹${p.price.toLocaleString('en-IN')})
+Price: ${p.priceDisplay} (₹${(p.price || 0).toLocaleString('en-IN')})
 Price per sq.ft: ₹${p.pricePerSqFt?.toLocaleString('en-IN') || 'On Request'}
 Location: ${p.location.locality}, ${p.location.city}. Landmark: ${p.location.landmark || p.location.address}
 Carpet Area: ${p.carpetAreaSqFt} sq.ft. (Super Area: ${p.superAreaSqFt || 'N/A'} sq.ft.)

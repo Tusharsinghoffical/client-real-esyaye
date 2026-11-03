@@ -3,7 +3,7 @@ import { BusinessConfig } from '@/types/real-estate';
 export const BUSINESS_CONFIG: BusinessConfig = {
   companyName: "Signature Aura Pvt. Ltd.",
   tagline: "Premier Luxury Real Estate Advisory & Living",
-  logoText: "SIGNATURE AURA",
+  logoText: "SIGNATURE AURA DEVELOPERS",
   phoneNumber: "+91 88056 21111",
   phoneRaw: "+918805621111",
   whatsappNumber: "918805621111",

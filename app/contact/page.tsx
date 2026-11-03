@@ -214,6 +214,7 @@ function ContactFormContent() {
                     placeholder="e.g. Vikram Malhotra"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    suppressHydrationWarning
                     className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded-lg text-base sm:text-sm text-[#171717]"
                   />
                 </div>
@@ -228,6 +229,7 @@ function ContactFormContent() {
                     placeholder="+91 88056 21111"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    suppressHydrationWarning
                     className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded-lg text-base sm:text-sm text-[#171717]"
                   />
                 </div>
@@ -244,6 +246,7 @@ function ContactFormContent() {
                     placeholder="vikram@familyoffice.in"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    suppressHydrationWarning
                     className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded-lg text-base sm:text-sm text-[#171717]"
                   />
                 </div>
@@ -277,6 +280,7 @@ function ContactFormContent() {
                     placeholder="e.g. Worli Sea Face, Assagao, Golf Course Rd..."
                     value={formData.preferredLocation}
                     onChange={(e) => setFormData({ ...formData, preferredLocation: e.target.value })}
+                    suppressHydrationWarning
                     className="w-full bg-[#FAF9F5] border border-[#E8E5DF] focus:border-[#171717] focus:outline-none px-3.5 py-2.5 rounded-lg text-base sm:text-sm text-[#171717]"
                   />
                 </div>

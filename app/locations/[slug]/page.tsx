@@ -1,8 +1,8 @@
-import React, { use } from 'react';
+import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { MapPin, ArrowLeft, ShieldCheck, Sparkles } from 'lucide-react';
 import AnnouncementBar from '@/components/layout/AnnouncementBar';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
@@ -10,13 +10,41 @@ import FloatingContactSystem from '@/components/floating/FloatingContactSystem';
 import PropertyCard from '@/components/properties/PropertyCard';
 import { SAMPLE_LOCATIONS, SAMPLE_PROPERTIES } from '@/lib/data/sample-data';
 
-export default function LocationDetailPage({
+export function generateStaticParams() {
+  return SAMPLE_LOCATIONS.map(l => ({
+    slug: l.slug,
+  }));
+}
+
+export async function generateMetadata({
+  params
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const location = SAMPLE_LOCATIONS.find(l => l.slug === slug);
+  if (!location) {
+    return { title: 'Location Not Found | Signature Aura™' };
+  }
+
+  return {
+    title: `Luxury Real Estate in ${location.name} | Signature Aura™`,
+    description: location.description.slice(0, 160),
+    openGraph: {
+      title: `Prime Properties in ${location.name} · Signature Aura™`,
+      description: location.description.slice(0, 160),
+      images: location.heroImage ? [location.heroImage] : [],
+    },
+  };
+}
+
+export default async function LocationDetailPage({
   params
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const resolvedParams = use(params);
-  const location = SAMPLE_LOCATIONS.find(l => l.slug === resolvedParams.slug);
+  const { slug } = await params;
+  const location = SAMPLE_LOCATIONS.find(l => l.slug === slug);
 
   if (!location) {
     notFound();

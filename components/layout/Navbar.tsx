@@ -70,27 +70,27 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 sm:h-[88px] md:h-24">
           
-          {/* Brand Logo with SA Emblem */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group py-1 min-w-0 flex-1 mr-2 sm:mr-0">
-            <div className="relative w-9 h-9 sm:w-11 sm:h-11 shrink-0 overflow-hidden rounded-xl bg-white p-0.5 border border-[#B99A63]/40 shadow-2xs group-hover:border-[#B99A63] transition-colors">
+          {/* Brand Logo with Circle Emblem & Text Logo */}
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group py-1 shrink-0 mr-2 sm:mr-4">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-[68px] lg:h-[68px] shrink-0 drop-shadow-sm group-hover:scale-105 transition-transform duration-300">
               <Image
-                src="/assets/aistudio/Navy_and_Gold_SA_Emblem_5fd307f4.png"
-                alt="Signature Aura Logo"
+                src="/assets/branding/logo-circle.png"
+                alt="Signature Aura Developers Emblem"
                 fill
                 className="object-contain"
                 priority
-                referrerPolicy="no-referrer"
               />
             </div>
-            <div className="flex flex-col min-w-0">
-              <span className="font-serif text-base sm:text-xl md:text-2xl tracking-[0.08em] sm:tracking-[0.16em] font-normal text-[#171717] group-hover:text-[#B99A63] transition-colors uppercase truncate flex items-center">
-                Signature Aura<span className="text-xs text-[#B99A63] ml-0.5">™</span>
-              </span>
-              <span className="text-[8px] sm:text-[9px] tracking-[0.18em] sm:tracking-[0.3em] text-[#777777] uppercase font-sans -mt-0.5 group-hover:text-[#171717] transition-colors truncate">
-                Pvt. Ltd. · Real Estate Advisory
-              </span>
+            <div className="relative h-10 sm:h-12 md:h-14 lg:h-16 w-[150px] sm:w-[190px] md:w-[225px] lg:w-[265px] shrink-0">
+              <Image
+                src="/assets/branding/logo-text-dark.png"
+                alt="Signature Aura Developers"
+                fill
+                className="object-contain object-left"
+                priority
+              />
             </div>
           </Link>
 
@@ -128,7 +128,7 @@ export default function Navbar() {
             >
               <Heart className="w-5 h-5" />
               {savedCount > 0 && (
-                <span className="absolute 1 top-0 right-0 bg-[#B99A63] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium">
+                <span className="absolute top-0 right-0 bg-[#B99A63] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-medium">
                   {savedCount}
                 </span>
               )}
@@ -205,29 +205,29 @@ export default function Navbar() {
           {/* Absolute positioning for the mobile menu content */}
           <div className="absolute top-0 left-0 right-0 w-full bg-[#FAF9F5] border-b border-[#E8E5DF] shadow-2xl max-h-[92dvh] overflow-y-auto overscroll-contain animate-in slide-in-from-top-1 duration-200 z-50">
             {/* Header row inside menu overlay aligned with top bar */}
-            <div className="flex items-center justify-between h-20 px-4 sm:px-6 border-b border-[#E8E5DF] bg-[#FAF9F5]">
+            <div className="flex items-center justify-between h-20 sm:h-[88px] px-4 sm:px-6 border-b border-[#E8E5DF] bg-[#FAF9F5]">
               <Link 
                 href="/" 
                 onClick={() => setMobileMenuOpen(false)} 
-                className="flex items-center gap-2.5 group py-1 min-w-0 flex-1 mr-2"
+                className="flex items-center gap-2.5 sm:gap-3 group py-1 shrink-0 mr-2"
               >
-                <div className="relative w-9 h-9 shrink-0 overflow-hidden rounded-lg bg-white p-0.5 border border-[#B99A63]/40">
+                <div className="relative w-11 h-11 sm:w-14 sm:h-14 shrink-0 drop-shadow-xs">
                   <Image
-                    src="/assets/aistudio/Navy_and_Gold_SA_Emblem_5fd307f4.png"
-                    alt="Signature Aura Logo"
+                    src="/assets/branding/logo-circle.png"
+                    alt="Signature Aura Developers Emblem"
                     fill
                     className="object-contain"
                     priority
-                    referrerPolicy="no-referrer"
                   />
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="font-serif text-base sm:text-xl tracking-[0.08em] font-normal text-[#171717] uppercase truncate flex items-center">
-                    Signature Aura<span className="text-xs text-[#B99A63] ml-0.5">™</span>
-                  </span>
-                  <span className="text-[8px] sm:text-[9px] tracking-[0.18em] text-[#777777] uppercase font-sans -mt-0.5 truncate">
-                    Pvt. Ltd. · Real Estate Advisory
-                  </span>
+                <div className="relative h-10 sm:h-12 w-[150px] sm:w-[190px] shrink-0">
+                  <Image
+                    src="/assets/branding/logo-text-dark.png"
+                    alt="Signature Aura Developers"
+                    fill
+                    className="object-contain object-left"
+                    priority
+                  />
                 </div>
               </Link>
 

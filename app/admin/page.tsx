@@ -33,11 +33,30 @@ import {
 import { Property, Lead, SiteVisit, BusinessConfig, LeadStatus } from '@/types/real-estate';
 import { BUSINESS_CONFIG, formatINR } from '@/lib/config';
 
+function subscribeAdminAuth(callback: () => void) {
+  if (typeof window === 'undefined') return () => {};
+  window.addEventListener('storage', callback);
+  window.addEventListener('aura_admin_auth_changed', callback);
+  return () => {
+    window.removeEventListener('storage', callback);
+    window.removeEventListener('aura_admin_auth_changed', callback);
+  };
+}
+
+function getAdminAuthSnapshot(): boolean {
+  if (typeof window === 'undefined') return false;
+  return sessionStorage.getItem('aura_admin_authenticated') === 'true';
+}
+
+function getAdminAuthServerSnapshot(): boolean {
+  return false;
+}
+
 export default function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-    return sessionStorage.getItem('aura_admin_authenticated') === 'true';
-  });
+  const isStoredAuth = React.useSyncExternalStore(subscribeAdminAuth, getAdminAuthSnapshot, getAdminAuthServerSnapshot);
+  const [localAuthOverride, setLocalAuthOverride] = useState<boolean | null>(null);
+  const isAuthenticated = localAuthOverride !== null ? localAuthOverride : isStoredAuth;
+
   const [adminPin, setAdminPin] = useState('');
   const [authError, setAuthError] = useState('');
 
@@ -134,8 +153,9 @@ export default function AdminPage() {
     e.preventDefault();
     // Default PIN: 2026 or master aura888
     if (adminPin === '2026' || adminPin === 'aura888' || adminPin === 'admin') {
-      setIsAuthenticated(true);
       sessionStorage.setItem('aura_admin_authenticated', 'true');
+      window.dispatchEvent(new Event('aura_admin_auth_changed'));
+      setLocalAuthOverride(true);
       setAuthError('');
     } else {
       setAuthError('Incorrect PIN. (Demo access PIN: 2026)');
@@ -144,7 +164,8 @@ export default function AdminPage() {
 
   const handleLogout = () => {
     sessionStorage.removeItem('aura_admin_authenticated');
-    setIsAuthenticated(false);
+    window.dispatchEvent(new Event('aura_admin_auth_changed'));
+    setLocalAuthOverride(false);
   };
 
   // Toggle Property Published
@@ -347,13 +368,19 @@ export default function AdminPage() {
     return (
       <div className="min-h-screen bg-[#171717] flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-[#222222] border border-[#333333] rounded-2xl p-8 shadow-2xl text-center space-y-6">
-          <div className="w-12 h-12 rounded-full bg-[#B99A63]/20 border border-[#B99A63]/50 flex items-center justify-center text-[#B99A63] mx-auto">
-            <Lock className="w-6 h-6" />
+          <div className="relative w-56 h-28 mx-auto rounded-xl overflow-hidden border border-[#B99A63]/40 shadow-lg bg-black">
+            <Image
+              src="/assets/branding/logo-combined.jpg"
+              alt="Signature Aura Developers"
+              fill
+              className="object-contain p-1"
+              priority
+            />
           </div>
 
           <div>
             <h1 className="font-serif text-2xl text-white">Advisor & Admin Portal</h1>
-            <p className="text-xs text-stone-400 mt-1">Signature Aura Pvt. Ltd. Management Console</p>
+            <p className="text-xs text-stone-400 mt-1">Signature Aura Developers Management Console</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4 text-left">
@@ -370,10 +397,10 @@ export default function AdminPage() {
               <input
                 type="password"
                 required
-                autoFocus
                 placeholder="Enter 2026"
                 value={adminPin}
                 onChange={(e) => setAdminPin(e.target.value)}
+                suppressHydrationWarning
                 className="w-full bg-[#171717] border border-[#333333] focus:border-[#B99A63] text-white px-3.5 py-2.5 rounded text-sm text-center tracking-widest focus:outline-none"
               />
               <span className="text-[11px] text-stone-500 block mt-1">
@@ -421,18 +448,28 @@ export default function AdminPage() {
       <header className="bg-[#171717] text-white border-b border-[#2D2D2D] sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           
-          <div className="flex items-center gap-4">
-            <Link href="/" className="flex flex-col group">
-              <span className="font-serif text-lg tracking-widest uppercase text-white font-normal flex items-center">
-                Signature Aura<span className="text-xs text-[#B99A63] ml-0.5">™</span>
-              </span>
-              <span className="text-[9px] tracking-[0.3em] text-[#B99A63] uppercase -mt-0.5">
-                Admin Console
-              </span>
+          <div className="flex items-center gap-3">
+            <Link href="/" className="flex items-center gap-2.5 group">
+              <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0">
+                <Image
+                  src="/assets/branding/logo-circle.png"
+                  alt="Signature Aura Developers"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+              <div className="relative h-6 w-32 shrink-0">
+                <Image
+                  src="/assets/branding/logo-text.png"
+                  alt="Signature Aura"
+                  fill
+                  className="object-contain object-left"
+                />
+              </div>
             </Link>
             <span className="hidden sm:inline text-stone-600">|</span>
             <span className="hidden sm:inline text-xs text-stone-400">
-              India Luxury Real Estate Management
+              Advisor & Management Console
             </span>
           </div>
 
