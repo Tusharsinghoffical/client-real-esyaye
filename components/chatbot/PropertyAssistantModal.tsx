@@ -8,6 +8,7 @@ import {
   Send, 
   X, 
   Bot, 
+  BotMessageSquare,
   Sparkles, 
   Phone, 
   ExternalLink, 
@@ -346,13 +347,8 @@ export default function PropertyAssistantModal({
           className="flex items-center gap-2.5 sm:gap-3 bg-[#171717] hover:bg-[#222222] text-white border border-[#B99A63]/70 rounded-full py-2.5 px-3.5 sm:px-4 shadow-2xl transition-all cursor-pointer group active:scale-95 touch-manipulation min-h-[48px]"
         >
           <div className="relative shrink-0">
-            <div className="relative w-8 h-8 rounded-full flex items-center justify-center overflow-hidden shadow-xs">
-              <Image
-                src="/assets/branding/logo-circle.png"
-                alt="Signature Aura Developers"
-                fill
-                className="object-contain"
-              />
+            <div className="w-8 h-8 rounded-full bg-[#242424] border border-[#B99A63]/50 flex items-center justify-center shadow-xs">
+              <BotMessageSquare className="w-4 h-4 text-[#E8D39E]" />
             </div>
             <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#171717]" />
           </div>
@@ -443,14 +439,8 @@ export default function PropertyAssistantModal({
         <div className="bg-[#171717] text-white px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between border-b border-[#2D2D2D] shrink-0 pt-[max(0.25rem,env(safe-area-inset-top))] sm:pt-3">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             <div className="relative shrink-0">
-              <div className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center overflow-hidden shadow-md">
-                <Image
-                  src="/assets/branding/logo-circle.png"
-                  alt="Signature Aura Developers"
-                  fill
-                  className="object-contain"
-                  priority
-                />
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#242424] border border-[#B99A63]/50 flex items-center justify-center shadow-md">
+                <BotMessageSquare className="w-5 h-5 text-[#E8D39E]" />
               </div>
               <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#171717]" />
             </div>
@@ -623,20 +613,15 @@ export default function PropertyAssistantModal({
                         : 'bg-white border border-[#E8E5DF] text-[#222222] rounded-bl-none shadow-xs'
                     }`}
                   >
-                    {/* Assistant Brand & RAG Grounding Header */}
+                    {/* Assistant AI Tag & RAG Grounding Header */}
                     {msg.role === 'assistant' && (
                       <div className="flex items-center justify-between gap-2 mb-2 border-b border-[#F0ECE1] pb-1.5">
                         <div className="flex items-center gap-1.5">
-                          <div className="relative w-4 h-4 rounded-full overflow-hidden shrink-0">
-                            <Image
-                              src="/assets/branding/logo-circle.png"
-                              alt="Signature Aura"
-                              fill
-                              className="object-contain"
-                            />
+                          <div className="w-4 h-4 rounded-full bg-[#171717] flex items-center justify-center shrink-0">
+                            <BotMessageSquare className="w-2.5 h-2.5 text-[#E8D39E]" />
                           </div>
                           <span className="text-[10px] font-semibold text-[#171717] tracking-wider uppercase">
-                            Signature Aura
+                            AI Property Assistant
                           </span>
                         </div>
                         {msg.isRagGrounded && (

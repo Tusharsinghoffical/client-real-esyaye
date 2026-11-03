@@ -42,40 +42,45 @@ function ContactFormContent() {
     setIsSubmitting(true);
     setErrorMsg('');
 
+    // Construct ultra-detailed, professional WhatsApp inquiry message
+    const formattedWhatsAppText = 
+`🏛️ *NEW ADVISORY INQUIRY | SIGNATURE AURA™*
+━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 *Client Name:* ${formData.fullName.trim()}
+📞 *Contact Phone:* ${formData.phone.trim()}
+✉️ *Official Email:* ${formData.email.trim()}
+🏢 *Service Area:* ${formData.subject}
+📍 *Preferred Location:* ${formData.preferredLocation.trim() || 'Flexible / Pan-India'}
+💰 *Target Budget:* ${formData.budget || 'To be discussed with Advisor'}
+━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 *Client Message & Requirements:*
+"${formData.message.trim() || 'I am interested in exploring exclusive residential / commercial opportunities with your advisory team.'}"
+━━━━━━━━━━━━━━━━━━━━━━━━━
+🌐 *Origin:* Signature Aura™ Contact Portal`;
+
+    const cleanNumber = (BUSINESS_CONFIG.whatsappNumber || '918805621111').replace(/[^0-9]/g, '');
+    const whatsappUrl = `https://wa.me/${cleanNumber}?text=${encodeURIComponent(formattedWhatsAppText)}`;
+
     try {
-      const res = await fetch('/api/leads', {
+      await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           fullName: formData.fullName,
           phone: formData.phone,
           email: formData.email,
-          leadSource: 'contact_form',
+          leadSource: 'contact_form_whatsapp',
           budget: formData.budget || 'Not specified',
           preferredLocation: formData.preferredLocation || 'India',
           message: `Subject: ${formData.subject}\n${formData.message}`
         })
       });
-
-      const data = await res.json();
-      if (data.success) {
-        setIsSuccess(true);
-        setFormData({
-          fullName: '',
-          phone: '',
-          email: '',
-          subject: 'General Property Inquiry',
-          preferredLocation: '',
-          budget: '',
-          message: ''
-        });
-      } else {
-        setErrorMsg(data.error || 'Failed to submit enquiry.');
-      }
     } catch {
-      setErrorMsg('Network error. Please call our direct concierge line.');
+      // Continue to WhatsApp redirect even if local logging encounters network issue
     } finally {
       setIsSubmitting(false);
+      setIsSuccess(true);
+      window.location.href = whatsappUrl;
     }
   };
 
@@ -181,19 +186,30 @@ function ContactFormContent() {
           </p>
 
           {isSuccess ? (
-            <div className="py-12 text-center space-y-3 bg-emerald-50 rounded-xl p-6 border border-emerald-200">
+            <div className="py-12 text-center space-y-4 bg-emerald-50/70 rounded-xl p-6 border border-emerald-200">
               <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-              <h4 className="font-serif text-2xl text-[#171717]">Inquiry Registered</h4>
+              <h4 className="font-serif text-2xl text-[#171717]">Inquiry Registered & Sent to VIP Desk</h4>
               <p className="text-xs sm:text-sm text-stone-600 max-w-md mx-auto">
-                Thank you for contacting Signature Aura™. A designated Senior Advisor will reach you via phone and email within two business hours.
+                Thank you for contacting Signature Aura™. Your inquiry details have been forwarded to our VIP WhatsApp advisory desk. An advisor will also reach you via phone and email within two business hours.
               </p>
-              <button
-                type="button"
-                onClick={() => setIsSuccess(false)}
-                className="mt-4 text-xs font-semibold uppercase tracking-wider text-[#171717] hover:text-[#B99A63]"
-              >
-                Submit Another Inquiry
-              </button>
+              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a
+                  href={`https://wa.me/${(BUSINESS_CONFIG.whatsappNumber || '918805621111').replace(/[^0-9]/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold uppercase tracking-wider px-6 py-2.5 rounded-lg shadow-xs transition-colors"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  Open WhatsApp Chat
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setIsSuccess(false)}
+                  className="text-xs font-semibold uppercase tracking-wider text-[#171717] hover:text-[#B99A63] underline underline-offset-4"
+                >
+                  Submit Another Inquiry
+                </button>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
