@@ -75,7 +75,7 @@ export default function PropertyCard({ property, viewMode = 'grid' }: PropertyCa
         
         {/* Image column */}
         <div className="relative md:w-80 h-64 md:h-auto overflow-hidden bg-stone-900 flex-shrink-0">
-          <Link href={`/properties/${property.slug}`} className="block h-full w-full">
+          <Link href={`/properties/${property.slug}`} className="relative block h-full w-full">
             <Image
               src={primaryImage}
               alt={property.title}
@@ -191,7 +191,7 @@ export default function PropertyCard({ property, viewMode = 'grid' }: PropertyCa
       
       {/* Property Image Container */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-900">
-        <Link href={`/properties/${property.slug}`} className="block h-full w-full">
+        <Link href={`/properties/${property.slug}`} className="relative block h-full w-full">
           <Image
             src={primaryImage}
             alt={property.title}

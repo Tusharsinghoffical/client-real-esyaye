@@ -7,6 +7,7 @@ import { ArrowUpRight } from 'lucide-react';
 interface ChatMessageContentProps {
   content: string;
   isUser?: boolean;
+  isDark?: boolean;
 }
 
 /**
@@ -15,7 +16,7 @@ interface ChatMessageContentProps {
  * - `code` (e.g. RERA numbers) -> <span className="font-mono ...">
  * - [Link Text](url) -> Next.js <Link>
  */
-function renderInlineContent(text: string, isUser = false) {
+function renderInlineContent(text: string, isUser = false, isDark = false) {
   // Pattern matching: [text](url) | **bold** | *italic/bold* | `code`
   const regex = /(\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`)/g;
   const elements: React.ReactNode[] = [];
@@ -33,12 +34,18 @@ function renderInlineContent(text: string, isUser = false) {
 
     if (linkText && linkUrl) {
       const isInternal = linkUrl.startsWith('/');
+      const linkClass = isUser
+        ? 'text-[#FAF9F5] font-semibold underline underline-offset-2 hover:text-[#E8D39E] transition-colors inline-flex items-center gap-0.5 mx-0.5'
+        : isDark
+        ? 'text-[#E8D39E] font-semibold underline underline-offset-2 hover:text-white transition-colors inline-flex items-center gap-0.5 mx-0.5'
+        : 'text-[#845E1B] font-semibold underline underline-offset-2 hover:text-[#5E400F] transition-colors inline-flex items-center gap-0.5 mx-0.5';
+
       if (isInternal) {
         elements.push(
           <Link
             key={`l-${matchIndex}`}
             href={linkUrl}
-            className="text-[#B99A63] font-semibold underline underline-offset-2 hover:text-[#D4AF37] transition-colors inline-flex items-center gap-0.5 mx-0.5"
+            className={linkClass}
           >
             <span>{linkText}</span>
             <ArrowUpRight className="w-3 h-3 inline-block shrink-0" />
@@ -51,7 +58,7 @@ function renderInlineContent(text: string, isUser = false) {
             href={linkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[#B99A63] font-semibold underline underline-offset-2 hover:text-[#D4AF37] transition-colors inline-flex items-center gap-0.5 mx-0.5"
+            className={linkClass}
           >
             <span>{linkText}</span>
             <ArrowUpRight className="w-3 h-3 inline-block shrink-0" />
@@ -60,19 +67,31 @@ function renderInlineContent(text: string, isUser = false) {
       }
     } else if (doubleBold || singleBold) {
       const boldText = doubleBold || singleBold;
+      const boldClass = isUser
+        ? 'text-[#FAF9F5] font-bold'
+        : isDark
+        ? 'text-white font-bold'
+        : 'text-[#171717] font-bold';
+
       elements.push(
         <strong
           key={`b-${matchIndex}`}
-          className={`font-semibold ${isUser ? 'text-[#171717]' : 'text-stone-900 dark:text-stone-100'}`}
+          className={boldClass}
         >
           {boldText}
         </strong>
       );
     } else if (code) {
+      const codeClass = isUser
+        ? 'bg-white/20 text-[#FAF9F5] border-white/30 font-medium'
+        : isDark
+        ? 'bg-[#B99A63]/25 text-[#E8D39E] border-[#B99A63]/40 font-medium'
+        : 'bg-[#B99A63]/15 text-[#735118] border-[#B99A63]/30 font-medium';
+
       elements.push(
         <code
           key={`c-${matchIndex}`}
-          className="font-mono text-[11px] bg-[#B99A63]/15 text-[#B99A63] dark:text-[#E8D39E] px-1.5 py-0.5 rounded border border-[#B99A63]/30 mx-0.5 font-medium"
+          className={`font-mono text-[11px] px-1.5 py-0.5 rounded border mx-0.5 ${codeClass}`}
         >
           {code}
         </code>
@@ -90,14 +109,14 @@ function renderInlineContent(text: string, isUser = false) {
   return elements.length > 0 ? elements : text;
 }
 
-export default function ChatMessageContent({ content, isUser = false }: ChatMessageContentProps) {
+export default function ChatMessageContent({ content, isUser = false, isDark = false }: ChatMessageContentProps) {
   if (!content) return null;
 
   // Split content into blocks by double line-breaks
   const blocks = content.split('\n\n').filter(Boolean);
 
   return (
-    <div className="space-y-2 text-xs sm:text-sm leading-relaxed">
+    <div className={`space-y-2 text-xs sm:text-sm leading-relaxed ${isUser ? 'text-[#FAF9F5]' : isDark ? 'text-stone-200' : 'text-[#222222]'}`}>
       {blocks.map((block, bIdx) => {
         const trimmed = block.trim();
 
@@ -109,19 +128,22 @@ export default function ChatMessageContent({ content, isUser = false }: ChatMess
               key={bIdx}
               className={`font-serif font-bold text-sm sm:text-base pb-1 mt-1 border-b ${
                 isUser 
-                  ? 'text-[#171717] border-[#171717]/20' 
-                  : 'text-[#B99A63] dark:text-[#E8D39E] border-[#B99A63]/30'
+                  ? 'text-[#FAF9F5] border-white/20' 
+                  : isDark
+                  ? 'text-[#E8D39E] border-[#B99A63]/30'
+                  : 'text-[#845E1B] border-[#B99A63]/30'
               }`}
             >
-              {renderInlineContent(headingText, isUser)}
+              {renderInlineContent(headingText, isUser, isDark)}
             </h4>
           );
         }
 
         // 2. Bullet list block (lines starting with • or - or numbered 1.)
         const lines = trimmed.split('\n');
-        const isListBlock = lines.every(
-          l => l.trim().startsWith('•') || l.trim().startsWith('-') || /^\d+\.\s/.test(l.trim()) || l.trim().startsWith('*') || l.trim() === ''
+        const nonEmptyLines = lines.filter(Boolean);
+        const isListBlock = nonEmptyLines.length > 0 && nonEmptyLines.every(
+          l => l.trim().startsWith('•') || l.trim().startsWith('-') || /^\d+\.\s/.test(l.trim()) || l.trim().startsWith('*')
         );
 
         if (isListBlock && lines.length > 0) {
@@ -131,8 +153,8 @@ export default function ChatMessageContent({ content, isUser = false }: ChatMess
                 const cleanLine = line.trim().replace(/^[•\-\*]\s+/, '').replace(/^\d+\.\s+/, '');
                 return (
                   <li key={lIdx} className="flex items-start gap-2">
-                    <span className="text-[#B99A63] mt-1 shrink-0 text-xs">◆</span>
-                    <span className="flex-1">{renderInlineContent(cleanLine, isUser)}</span>
+                    <span className={`${isDark ? 'text-[#B99A63]' : 'text-[#845E1B]'} mt-1 shrink-0 text-xs`}>◆</span>
+                    <span className="flex-1">{renderInlineContent(cleanLine, isUser, isDark)}</span>
                   </li>
                 );
               })}
@@ -145,7 +167,7 @@ export default function ChatMessageContent({ content, isUser = false }: ChatMess
           <p key={bIdx} className="leading-relaxed">
             {lines.map((line, lIdx) => (
               <React.Fragment key={lIdx}>
-                {renderInlineContent(line, isUser)}
+                {renderInlineContent(line, isUser, isDark)}
                 {lIdx < lines.length - 1 && <br />}
               </React.Fragment>
             ))}

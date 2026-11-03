@@ -756,7 +756,7 @@ Our engineering and advisory desk led by **${CHAT_CONFIG.FOUNDER_NAME}** can pro
 
                     {/* Rich Formatted Markdown Content */}
                     <div className="font-light">
-                      <ChatMessageContent content={m.content} isUser={m.role === 'user'} />
+                      <ChatMessageContent content={m.content} isUser={m.role === 'user'} isDark={true} />
                     </div>
 
                     {/* Action Callout Button if applicable */}
