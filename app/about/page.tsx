@@ -31,7 +31,7 @@ export default function AboutPage() {
       initials: 'RDP',
       market: 'Pune Prime Corridors',
       bio: 'Founding Partner at Signature Aura Pvt. Ltd., steering land parcel aggregations, institutional builder joint ventures, and marquee luxury residential developments across Baner, Sus, Balewadi, and Pune.',
-      photo: '', // Reserved space for photograph
+      photo: '/assets/team/rakesh-desale-patil.jpg',
       phone: BUSINESS_CONFIG.phoneRaw,
       email: BUSINESS_CONFIG.email,
     },
@@ -43,7 +43,7 @@ export default function AboutPage() {
       initials: 'UB',
       market: 'High-End Residential & Penthouses',
       bio: 'Partner at Signature Aura Pvt. Ltd., leading bespoke residential acquisitions, trophy penthouses, gated community villas, and high-net-worth investor advisory with impeccable fiduciary diligence.',
-      photo: '', // Reserved space for photograph
+      photo: '/assets/team/uma-bhandwalkar.jpg',
       phone: BUSINESS_CONFIG.phoneRaw,
       email: BUSINESS_CONFIG.email,
     },
@@ -55,7 +55,7 @@ export default function AboutPage() {
       initials: 'AB',
       market: 'Commercial & Institutional Assets',
       bio: 'Partner at Signature Aura Pvt. Ltd., overseeing corporate floor-plate leasing, Grade-A IT park investments, 30-year forensic title verifications, and statutory MahaRERA governance.',
-      photo: '', // Reserved space for photograph
+      photo: '/assets/team/akshay-bhote.jpg',
       phone: BUSINESS_CONFIG.phoneRaw,
       email: BUSINESS_CONFIG.email,
     },
@@ -67,7 +67,7 @@ export default function AboutPage() {
       initials: 'RB',
       market: 'NRI Wealth & Lifestyle Estates',
       bio: 'Partner at Signature Aura Pvt. Ltd., directing asset management, cross-border NRI investment advisory, client concierge protocols, and long-term portfolio appreciation strategies.',
-      photo: '', // Reserved space for photograph
+      photo: '/assets/team/rama-bhote.jpg',
       phone: BUSINESS_CONFIG.phoneRaw,
       email: BUSINESS_CONFIG.email,
     }

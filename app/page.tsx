@@ -43,7 +43,7 @@ const FOUNDING_PARTNERS = [
     initials: 'RDP',
     market: 'Pune Prime Corridors',
     bio: 'Founding Partner at Signature Aura Pvt. Ltd., steering land parcel aggregations, institutional builder joint ventures, and marquee luxury residential developments.',
-    photo: '',
+    photo: '/assets/team/rakesh-desale-patil.jpg',
   },
   {
     name: 'Uma Bhandwalkar',
@@ -53,7 +53,7 @@ const FOUNDING_PARTNERS = [
     initials: 'UB',
     market: 'High-End Residential & Penthouses',
     bio: 'Partner at Signature Aura Pvt. Ltd., leading bespoke residential acquisitions, trophy penthouses, gated community villas, and high-net-worth investor advisory.',
-    photo: '',
+    photo: '/assets/team/uma-bhandwalkar.jpg',
   },
   {
     name: 'Akshay Bhote',
@@ -63,7 +63,7 @@ const FOUNDING_PARTNERS = [
     initials: 'AB',
     market: 'Commercial & Institutional Assets',
     bio: 'Partner at Signature Aura Pvt. Ltd., overseeing corporate floor-plate leasing, Grade-A IT park investments, 30-year forensic title verifications, and statutory MahaRERA governance.',
-    photo: '',
+    photo: '/assets/team/akshay-bhote.jpg',
   },
   {
     name: 'Rama Bhote',
@@ -73,7 +73,7 @@ const FOUNDING_PARTNERS = [
     initials: 'RB',
     market: 'NRI Wealth & Lifestyle Estates',
     bio: 'Partner at Signature Aura Pvt. Ltd., directing asset management, cross-border NRI investment advisory, client concierge protocols, and long-term portfolio appreciation strategies.',
-    photo: '',
+    photo: '/assets/team/rama-bhote.jpg',
   }
 ];
 
