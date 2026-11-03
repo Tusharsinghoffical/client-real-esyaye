@@ -290,15 +290,12 @@ export default function AboutPage() {
                 <p className="text-stone-700 text-sm leading-relaxed italic">
                   &ldquo;{test.quote}&rdquo;
                 </p>
-                <div className="mt-6 flex items-center gap-3">
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden bg-stone-200 flex-shrink-0">
-                    <Image src={test.avatarUrl} alt={test.clientName} fill className="object-cover" referrerPolicy="no-referrer" />
-                  </div>
-                  <div>
-                    <h4 className="font-medium text-sm text-[#171717]">{test.clientName}</h4>
-                    <p className="text-xs text-stone-500">{test.designation}</p>
-                    <p className="text-xs text-[#B99A63] font-medium mt-0.5">{test.propertyPurchased}</p>
-                  </div>
+                <div className="mt-6 pt-5 border-t border-[#E8E5DF]">
+                  <h4 className="font-semibold text-sm text-[#171717]">{test.clientName}</h4>
+                  <p className="text-xs text-stone-500 mt-0.5">{test.designation}</p>
+                  {test.propertyPurchased && (
+                    <p className="text-[11px] text-[#B99A63] font-medium mt-1">{test.propertyPurchased}</p>
+                  )}
                 </div>
               </div>
             ))}

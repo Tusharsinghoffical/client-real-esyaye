@@ -961,27 +961,14 @@ export default function HomePage() {
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-5 border-t border-[#E8E5DF] flex items-center gap-3">
-                    <div className="relative w-10 h-10 rounded-full overflow-hidden bg-stone-200 flex-shrink-0">
-                      <Image
-                        src={test.avatarUrl}
-                        alt={test.clientName}
-                        fill
-                        loading="lazy"
-                        sizes="40px"
-                        className="object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="font-medium text-xs text-[#171717]">{test.clientName}</h4>
-                      <p className="text-[11px] text-stone-500">{test.designation}</p>
-                      {test.propertyPurchased && (
-                        <p className="text-[10px] text-[#B99A63] font-medium mt-0.5">
-                          {test.propertyPurchased}
-                        </p>
-                      )}
-                    </div>
+                  <div className="mt-6 pt-5 border-t border-[#E8E5DF]">
+                    <h4 className="font-semibold text-sm text-[#171717]">{test.clientName}</h4>
+                    <p className="text-xs text-stone-500 mt-0.5">{test.designation}</p>
+                    {test.propertyPurchased && (
+                      <p className="text-[11px] text-[#B99A63] font-medium mt-1">
+                        {test.propertyPurchased}
+                      </p>
+                    )}
                   </div>
                 </div>
               ))}
