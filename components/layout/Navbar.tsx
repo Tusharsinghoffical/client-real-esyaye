@@ -13,11 +13,78 @@ import {
 } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/lib/config';
 
+function RotatingBrandLogo({ 
+  logoMode, 
+  onClick 
+}: { 
+  logoMode: 'emblem' | 'text'; 
+  onClick?: () => void; 
+}) {
+  return (
+    <Link 
+      href="/" 
+      onClick={onClick}
+      className="relative w-36 sm:w-44 md:w-48 lg:w-56 xl:w-60 h-11 sm:h-12 md:h-13 lg:h-14 xl:h-[58px] flex items-center shrink-0 mr-2 sm:mr-4 group focus:outline-hidden"
+      aria-label="Signature Aura Developers"
+    >
+      {/* 1. 3D Architectural SA Luxury Emblem */}
+      <div 
+        className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${
+          logoMode === 'emblem' 
+            ? 'opacity-100 scale-100 pointer-events-auto' 
+            : 'opacity-0 scale-95 pointer-events-none'
+        }`}
+      >
+        <div className="relative w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14 xl:w-[58px] xl:h-[58px] shrink-0 drop-shadow-md group-hover:scale-105 transition-transform duration-300">
+          <Image
+            src="/assets/branding/logo-emblem.png"
+            alt="Signature Aura Developers Emblem"
+            fill
+            sizes="(max-width: 640px) 48px, 60px"
+            className="object-contain object-left"
+            priority
+          />
+        </div>
+      </div>
+
+      {/* 2. Full Brand Wordmark Banner: SIGNATURE AURA DEVELOPERS */}
+      <div 
+        className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${
+          logoMode === 'text' 
+            ? 'opacity-100 scale-100 pointer-events-auto' 
+            : 'opacity-0 scale-95 pointer-events-none'
+        }`}
+      >
+        <div className="relative w-36 sm:w-44 md:w-48 lg:w-56 xl:w-60 h-10 sm:h-11 md:h-12 lg:h-13 xl:h-14 shrink-0 drop-shadow-xs group-hover:scale-[1.02] transition-transform duration-300">
+          <Image
+            src="/assets/branding/logo-text.png"
+            alt="Signature Aura Developers"
+            fill
+            sizes="(max-width: 640px) 176px, 240px"
+            className="object-contain object-left"
+            priority
+          />
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
+  const [logoMode, setLogoMode] = useState<'emblem' | 'text'>('emblem');
   const pathname = usePathname();
+
+  // Automatic logo swap every 20 seconds without page refresh or user interaction
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLogoMode((prev) => (prev === 'emblem' ? 'text' : 'emblem'));
+    }, 20000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   // Scroll detection
   useEffect(() => {
@@ -69,27 +136,8 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[72px] sm:h-[76px] md:h-20 lg:h-[84px] xl:h-[90px]">
           
-          {/* Brand Logo with 3D SA Emblem & Text Logo */}
-          <Link href="/" className="flex items-center gap-2 sm:gap-3 group py-1 shrink-0 mr-2 sm:mr-4">
-            <div className="relative w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 lg:w-[52px] lg:h-[52px] xl:w-[58px] xl:h-[58px] shrink-0 drop-shadow-md group-hover:scale-105 transition-transform duration-300">
-              <Image
-                src="/assets/branding/logo-circle.png"
-                alt="Signature Aura Developers Emblem"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-            <div className="relative h-9 sm:h-10 md:h-11 lg:h-12 xl:h-13 w-[115px] sm:w-[135px] md:w-[155px] lg:w-[175px] xl:w-[195px] shrink-0">
-              <Image
-                src="/assets/branding/logo-text.png"
-                alt="Signature Aura Developers"
-                fill
-                className="object-contain object-left"
-                priority
-              />
-            </div>
-          </Link>
+          {/* Automated Swapping Brand Logo (Emblem <-> Text every 20s) */}
+          <RotatingBrandLogo logoMode={logoMode} />
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-4 xl:gap-7">
@@ -195,30 +243,10 @@ export default function Navbar() {
           <div className="absolute top-0 left-0 right-0 w-full bg-[#121214] text-[#FAF9F5] border-b border-[#262629] shadow-2xl max-h-[92dvh] overflow-y-auto overscroll-contain animate-in slide-in-from-top-1 duration-200 z-50">
             {/* Header row inside menu overlay aligned with top bar */}
             <div className="flex items-center justify-between h-[72px] sm:h-[76px] md:h-20 px-4 sm:px-6 border-b border-[#262629] bg-[#121214]">
-              <Link 
-                href="/" 
+              <RotatingBrandLogo 
+                logoMode={logoMode} 
                 onClick={() => setMobileMenuOpen(false)} 
-                className="flex items-center gap-2 sm:gap-3 group py-1 shrink-0 mr-2"
-              >
-                <div className="relative w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 shrink-0 drop-shadow-xs">
-                  <Image
-                    src="/assets/branding/logo-circle.png"
-                    alt="Signature Aura Developers Emblem"
-                    fill
-                    className="object-contain"
-                    priority
-                  />
-                </div>
-                <div className="relative h-9 sm:h-10 md:h-11 w-[115px] sm:w-[135px] md:w-[155px] shrink-0">
-                  <Image
-                    src="/assets/branding/logo-text.png"
-                    alt="Signature Aura Developers"
-                    fill
-                    className="object-contain object-left"
-                    priority
-                  />
-                </div>
-              </Link>
+              />
 
               <div className="flex items-center gap-1.5 shrink-0">
                 <Link
