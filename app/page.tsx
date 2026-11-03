@@ -884,39 +884,16 @@ export default function HomePage() {
                   </div>
 
                   {/* Partner Details */}
-                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                    <div>
-                      <span className="text-[10px] font-semibold tracking-widest text-[#B99A63] uppercase block mb-1">
-                        {partner.market}
-                      </span>
-                      <h3 className="font-serif text-xl text-[#171717] font-medium leading-snug">
-                        {partner.name}
-                      </h3>
-                      <p className="text-xs text-stone-500 mt-1 font-medium">
-                        Partner & Director
-                      </p>
-                    </div>
-
-                    {/* Quick WhatsApp / Call */}
-                    <div className="pt-3 border-t border-[#E8E5DF] flex items-center justify-between gap-2">
-                      <a
-                        href={getWhatsAppLink(`Hello Signature Aura, I would like to consult directly with ${partner.name} (Partner & Director) regarding real estate advisory.`)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 min-h-[38px] bg-emerald-700 hover:bg-emerald-800 text-white text-[11px] font-medium rounded-lg flex items-center justify-center gap-1.5 transition-colors shadow-xs"
-                      >
-                        <MessageSquare className="w-3.5 h-3.5" />
-                        <span>WhatsApp Desk</span>
-                      </a>
-                      <a
-                        href={`tel:${BUSINESS_CONFIG.phoneRaw}`}
-                        className="w-10 h-10 rounded-lg border border-[#E8E5DF] hover:border-[#171717] bg-white flex items-center justify-center text-[#171717] hover:text-[#B99A63] transition-colors"
-                        title={`Call Office for ${partner.name}`}
-                        aria-label={`Call office for ${partner.name}`}
-                      >
-                        <Phone className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
+                  <div className="p-5 flex flex-col">
+                    <span className="text-[10px] font-semibold tracking-widest text-[#B99A63] uppercase block mb-1">
+                      {partner.market}
+                    </span>
+                    <h3 className="font-serif text-xl text-[#171717] font-medium leading-snug">
+                      {partner.name}
+                    </h3>
+                    <p className="text-xs text-stone-500 mt-1 font-medium">
+                      Partner & Director
+                    </p>
                   </div>
                 </div>
               ))}
