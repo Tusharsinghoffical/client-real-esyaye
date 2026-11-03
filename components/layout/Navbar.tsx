@@ -70,11 +70,11 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 md:h-[84px]">
+        <div className="flex items-center justify-between h-[82px] sm:h-[90px] md:h-[98px] lg:h-[106px] xl:h-[112px]">
           
           {/* Brand Logo with Circle Emblem & Text Logo */}
-          <Link href="/" className="flex items-center gap-2.5 sm:gap-3 group py-1 shrink-0 mr-2 sm:mr-4">
-            <div className="relative w-11 h-11 sm:w-12 sm:h-12 md:w-[54px] md:h-[54px] shrink-0 drop-shadow-sm group-hover:scale-105 transition-transform duration-300">
+          <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group py-1 shrink-0 mr-2 sm:mr-4">
+            <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-[70px] lg:h-[70px] xl:w-[76px] xl:h-[76px] shrink-0 drop-shadow-sm group-hover:scale-105 transition-transform duration-300">
               <Image
                 src="/assets/branding/logo-circle.png"
                 alt="Signature Aura Developers Emblem"
@@ -83,7 +83,7 @@ export default function Navbar() {
                 priority
               />
             </div>
-            <div className="relative h-9 sm:h-10 md:h-11 w-[155px] sm:w-[185px] md:w-[210px] shrink-0">
+            <div className="relative h-12 sm:h-14 md:h-[62px] lg:h-[70px] xl:h-[76px] w-[145px] sm:w-[170px] md:w-[188px] lg:w-[212px] xl:w-[230px] shrink-0">
               <Image
                 src="/assets/branding/logo-text-dark.png"
                 alt="Signature Aura Developers"
@@ -95,22 +95,22 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-xs uppercase tracking-[0.14em] transition-colors relative py-1.5 ${
+                  className={`text-[13px] uppercase tracking-[0.14em] transition-colors relative py-2 ${
                     isActive 
-                      ? 'text-[#171717] font-semibold' 
-                      : 'text-[#555555] hover:text-[#171717] font-medium'
+                      ? 'text-[#171717] font-bold' 
+                      : 'text-[#444444] hover:text-[#171717] font-medium'
                   }`}
                 >
                   {link.name}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#B99A63] rounded-full" />
+                    <span className="absolute bottom-0 left-0 w-full h-[2.5px] bg-[#B99A63] rounded-full" />
                   )}
                 </Link>
               );
@@ -122,7 +122,7 @@ export default function Navbar() {
             {/* Saved properties button */}
             <Link 
               href="/properties?filter=saved"
-              className="relative p-2 text-[#555555] hover:text-[#171717] hover:bg-stone-200/50 rounded-full transition-all touch-target"
+              className="relative p-2.5 text-[#555555] hover:text-[#171717] hover:bg-stone-200/50 rounded-full transition-all touch-target"
               title="Saved Properties"
               aria-label={`View saved properties (${savedCount})`}
             >
@@ -137,7 +137,7 @@ export default function Navbar() {
             {/* Admin Portal link */}
             <Link 
               href="/admin" 
-              className="text-[11px] tracking-wider text-[#666666] hover:text-[#171717] px-3 py-1.5 border border-[#E8E5DF] hover:border-[#171717] rounded-full transition-all uppercase font-medium"
+              className="text-xs tracking-wider text-[#666666] hover:text-[#171717] px-3.5 py-2 border border-[#E8E5DF] hover:border-[#171717] rounded-full transition-all uppercase font-medium"
             >
               Portal
             </Link>
@@ -145,7 +145,7 @@ export default function Navbar() {
             {/* Direct Call Concierge CTA */}
             <a
               href={`tel:${BUSINESS_CONFIG.phoneRaw}`}
-              className="inline-flex items-center gap-2 bg-[#171717] text-[#FAF9F5] hover:bg-[#B99A63] text-xs font-medium tracking-wider uppercase px-4 py-2.5 rounded-full transition-all shadow-sm hover:shadow min-h-[40px]"
+              className="inline-flex items-center gap-2 bg-[#171717] text-[#FAF9F5] hover:bg-[#B99A63] text-xs font-semibold tracking-wider uppercase px-4.5 py-2.5 rounded-full transition-all shadow-sm hover:shadow min-h-[42px]"
             >
               <Phone className="w-3.5 h-3.5" />
               <span>Schedule Call</span>
@@ -205,13 +205,13 @@ export default function Navbar() {
           {/* Absolute positioning for the mobile menu content */}
           <div className="absolute top-0 left-0 right-0 w-full bg-[#FAF9F5] border-b border-[#E8E5DF] shadow-2xl max-h-[92dvh] overflow-y-auto overscroll-contain animate-in slide-in-from-top-1 duration-200 z-50">
             {/* Header row inside menu overlay aligned with top bar */}
-            <div className="flex items-center justify-between h-20 sm:h-[88px] px-4 sm:px-6 border-b border-[#E8E5DF] bg-[#FAF9F5]">
+            <div className="flex items-center justify-between h-[82px] sm:h-[90px] md:h-[98px] px-4 sm:px-6 border-b border-[#E8E5DF] bg-[#FAF9F5]">
               <Link 
                 href="/" 
                 onClick={() => setMobileMenuOpen(false)} 
                 className="flex items-center gap-2.5 sm:gap-3 group py-1 shrink-0 mr-2"
               >
-                <div className="relative w-11 h-11 sm:w-14 sm:h-14 shrink-0 drop-shadow-xs">
+                <div className="relative w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 shrink-0 drop-shadow-xs">
                   <Image
                     src="/assets/branding/logo-circle.png"
                     alt="Signature Aura Developers Emblem"
@@ -220,7 +220,7 @@ export default function Navbar() {
                     priority
                   />
                 </div>
-                <div className="relative h-10 sm:h-12 w-[150px] sm:w-[190px] shrink-0">
+                <div className="relative h-12 sm:h-14 md:h-[62px] w-[145px] sm:w-[170px] md:w-[188px] shrink-0">
                   <Image
                     src="/assets/branding/logo-text-dark.png"
                     alt="Signature Aura Developers"
