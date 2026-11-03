@@ -36,6 +36,16 @@ import { getPropertyBySlug, getSimilarProperties } from '@/lib/db';
 import { getWhatsAppLink } from '@/lib/config';
 import { Property } from '@/types/real-estate';
 
+const resolvePartnerPhoto = (name?: string, fallbackPhoto?: string) => {
+  if (!name) return fallbackPhoto || '/assets/team/rakesh-desale-patil.jpg';
+  const lower = name.toLowerCase();
+  if (lower.includes('rakesh')) return '/assets/team/rakesh-desale-patil.jpg';
+  if (lower.includes('uma')) return '/assets/team/uma-bhandwalkar.jpg';
+  if (lower.includes('akshay')) return '/assets/team/akshay-bhote.jpg';
+  if (lower.includes('rama')) return '/assets/team/rama-bhote.jpg';
+  return fallbackPhoto || '/assets/team/rakesh-desale-patil.jpg';
+};
+
 export default function PropertyDetailClient({ 
   slug, 
   initialProperty 
@@ -429,9 +439,9 @@ export default function PropertyDetailClient({
             {/* Assigned Partner Profile */}
             <section className="bg-white border border-[#E8E5DF] rounded-xl p-6 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="flex items-center gap-4">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden bg-stone-200 flex-shrink-0">
+                <div className="relative w-16 h-16 rounded-full overflow-hidden bg-stone-200 flex-shrink-0 border-2 border-[#B99A63]/50 shadow-sm">
                   <Image
-                    src={property.agent.photo}
+                    src={resolvePartnerPhoto(property.agent.name, property.agent.photo)}
                     alt={property.agent.name}
                     fill
                     className="object-cover"
@@ -658,17 +668,17 @@ export default function PropertyDetailClient({
           aria-label="Image gallery lightbox"
         >
           {/* Top Bar */}
-          <div className="flex items-center justify-between text-white border-b border-stone-800 pb-3">
-            <div className="flex items-center gap-3">
-              <span className="font-serif text-lg text-white font-medium truncate max-w-xs sm:max-w-md">
+          <div className="flex items-center justify-between gap-3 text-white border-b border-stone-800 pb-3 shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+              <span className="font-serif text-sm sm:text-base md:text-lg text-white font-medium truncate">
                 {property.title}
               </span>
-              <span className="text-xs bg-stone-800 text-[#B99A63] font-mono px-2.5 py-1 rounded-full border border-stone-700">
+              <span className="text-xs bg-stone-800 text-[#B99A63] font-mono px-2.5 py-0.5 sm:py-1 rounded-full border border-stone-700 shrink-0 whitespace-nowrap">
                 {activeImageIndex + 1} / {property.images.length}
               </span>
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <button
                 type="button"
                 onClick={() => {
@@ -684,7 +694,7 @@ export default function PropertyDetailClient({
               <button
                 type="button"
                 onClick={() => setIsLightboxOpen(false)}
-                className="p-2 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white transition-colors"
+                className="p-2 rounded-lg bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white transition-colors shrink-0"
                 aria-label="Close fullscreen gallery"
               >
                 <X className="w-5 h-5" />
@@ -693,16 +703,18 @@ export default function PropertyDetailClient({
           </div>
 
           {/* Main Stage */}
-          <div className="relative flex-1 flex items-center justify-center my-4 overflow-hidden">
-            {/* Left Nav Button */}
-            <button
-              type="button"
-              onClick={handlePrevImage}
-              className="absolute left-2 sm:left-6 z-10 p-3 rounded-full bg-black/60 hover:bg-[#B99A63] hover:text-stone-950 text-white backdrop-blur-md transition-all border border-white/10 shadow-xl"
-              aria-label="Previous image"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
+          <div className="relative flex-1 flex items-center justify-center my-2 sm:my-4 overflow-hidden w-full">
+            {/* Left Nav Button (only when multiple images) */}
+            {property.images.length > 1 && (
+              <button
+                type="button"
+                onClick={handlePrevImage}
+                className="absolute left-2 sm:left-6 z-10 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-[#B99A63] hover:text-stone-950 text-white backdrop-blur-md transition-all border border-white/10 shadow-xl"
+                aria-label="Previous image"
+              >
+                <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            )}
 
             {/* Current Image Container */}
             <div className="relative w-full h-full max-w-5xl max-h-[75vh] flex items-center justify-center">
@@ -716,32 +728,36 @@ export default function PropertyDetailClient({
               />
             </div>
 
-            {/* Right Nav Button */}
-            <button
-              type="button"
-              onClick={handleNextImage}
-              className="absolute right-2 sm:right-6 z-10 p-3 rounded-full bg-black/60 hover:bg-[#B99A63] hover:text-stone-950 text-white backdrop-blur-md transition-all border border-white/10 shadow-xl"
-              aria-label="Next image"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+            {/* Right Nav Button (only when multiple images) */}
+            {property.images.length > 1 && (
+              <button
+                type="button"
+                onClick={handleNextImage}
+                className="absolute right-2 sm:right-6 z-10 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-[#B99A63] hover:text-stone-950 text-white backdrop-blur-md transition-all border border-white/10 shadow-xl"
+                aria-label="Next image"
+              >
+                <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+              </button>
+            )}
           </div>
 
           {/* Bottom Bar: Caption and Thumbnails */}
-          <div className="border-t border-stone-800 pt-3">
-            <div className="text-center text-xs text-stone-400 mb-3 flex items-center justify-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#B99A63]" />
-              <span className="text-stone-200 font-medium">{property.images[activeImageIndex]?.caption || property.title}</span>
+          <div className="border-t border-stone-800 pt-2.5 sm:pt-3 shrink-0">
+            <div className="text-center text-xs text-stone-400 mb-2 sm:mb-3 flex items-center justify-center gap-2 px-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#B99A63] shrink-0" />
+              <span className="text-stone-200 font-medium truncate max-w-xs sm:max-w-md">
+                {property.images[activeImageIndex]?.caption || property.title}
+              </span>
               <span className="text-stone-500 hidden sm:inline">· Press Esc to exit or use arrow keys</span>
             </div>
 
             {property.images.length > 1 && (
-              <div className="flex gap-2 justify-center overflow-x-auto pb-1 max-w-4xl mx-auto scrollbar-thin">
+              <div className="flex gap-2 justify-center overflow-x-auto pb-1 max-w-4xl mx-auto scrollbar-thin px-2">
                 {property.images.map((img, idx) => (
                   <button
                     key={idx}
                     onClick={() => setActiveImageIndex(idx)}
-                    className={`relative w-16 h-12 rounded overflow-hidden flex-shrink-0 border-2 transition-all ${
+                    className={`relative w-14 sm:w-16 h-10 sm:h-12 rounded overflow-hidden flex-shrink-0 border-2 transition-all ${
                       activeImageIndex === idx
                         ? 'border-[#B99A63] scale-105 opacity-100 ring-2 ring-[#B99A63]/50'
                         : 'border-stone-800 opacity-50 hover:opacity-80'

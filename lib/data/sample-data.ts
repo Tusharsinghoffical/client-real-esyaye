@@ -86,7 +86,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Managing Partner - Luxury Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rakesh-desale-patil.jpg',
       experienceYears: 16,
       rating: 4.95
     },
@@ -170,7 +170,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Senior Director - Delhi NCR Portfolio',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/akshay-bhote.jpg',
       experienceYears: 14,
       rating: 4.92
     },
@@ -254,7 +254,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Principal Associate - Goa Luxury Homes',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/uma-bhandwalkar.jpg',
       experienceYears: 11,
       rating: 4.97
     },
@@ -332,7 +332,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Managing Partner - Luxury Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rakesh-desale-patil.jpg',
       experienceYears: 16,
       rating: 4.95
     },
@@ -410,7 +410,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Partner - Southern India Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rama-bhote.jpg',
       experienceYears: 13,
       rating: 4.89
     },
@@ -489,7 +489,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Partner - Southern India Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rama-bhote.jpg',
       experienceYears: 13,
       rating: 4.89
     },
@@ -561,7 +561,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Managing Partner - Luxury Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rakesh-desale-patil.jpg',
       experienceYears: 16,
       rating: 4.95
     },
@@ -632,7 +632,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Senior Director - Delhi NCR Portfolio',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/akshay-bhote.jpg',
       experienceYears: 14,
       rating: 4.92
     },
@@ -710,7 +710,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Managing Partner - Luxury Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rakesh-desale-patil.jpg',
       experienceYears: 16,
       rating: 4.95
     },
@@ -779,7 +779,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Managing Partner - Luxury Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rakesh-desale-patil.jpg',
       experienceYears: 16,
       rating: 4.95
     },
@@ -849,7 +849,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Principal Associate - Goa Luxury Homes',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/uma-bhandwalkar.jpg',
       experienceYears: 11,
       rating: 4.97
     },
@@ -920,7 +920,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Partner - Southern India Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rama-bhote.jpg',
       experienceYears: 13,
       rating: 4.89
     },
@@ -999,7 +999,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Managing Partner - Luxury Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rakesh-desale-patil.jpg',
       experienceYears: 16,
       rating: 4.95
     },
@@ -1070,7 +1070,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Senior Director - Delhi NCR Portfolio',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/akshay-bhote.jpg',
       experienceYears: 14,
       rating: 4.92
     },
@@ -1141,7 +1141,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Partner - Southern India Advisory',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/rama-bhote.jpg',
       experienceYears: 13,
       rating: 4.89
     },
@@ -1212,7 +1212,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
       title: 'Senior Director - Delhi NCR Portfolio',
       phone: '+91 88056 21111',
       email: 'Aura@gmail.com',
-      photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+      photo: '/assets/team/akshay-bhote.jpg',
       experienceYears: 14,
       rating: 4.92
     },

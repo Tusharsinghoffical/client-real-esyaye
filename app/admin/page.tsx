@@ -253,7 +253,7 @@ export default function AdminPage() {
         title: 'Partner & Director - Strategic Acquisitions',
         phone: BUSINESS_CONFIG.phoneNumber,
         email: BUSINESS_CONFIG.email,
-        photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80',
+        photo: '/assets/team/rakesh-desale-patil.jpg',
         experienceYears: 16,
         rating: 4.95
       }
