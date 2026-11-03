@@ -22,6 +22,7 @@ import Footer from '@/components/layout/Footer';
 import FloatingContactSystem from '@/components/floating/FloatingContactSystem';
 import PropertyCard from '@/components/properties/PropertyCard';
 import PropertyFilters, { FilterState, LUXURY_AMENITIES } from '@/components/properties/PropertyFilters';
+import SharePageButton from '@/components/common/SharePageButton';
 import { SAMPLE_PROPERTIES } from '@/lib/data/sample-data';
 import { Property } from '@/types/real-estate';
 
@@ -54,6 +55,14 @@ function PropertiesContent() {
   const [properties] = useState<Property[]>(SAMPLE_PROPERTIES);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [activeTab, setActiveTab] = useState<'all' | 'saved'>(initialIsSaved ? 'saved' : 'all');
+
+  // Deep-linking: if URL contains ?item=slug or ?property=slug, navigate directly to residence
+  useEffect(() => {
+    const itemSlug = searchParams.get('property') || searchParams.get('item');
+    if (itemSlug) {
+      router.push(`/properties/${itemSlug}`);
+    }
+  }, [searchParams, router]);
 
   const savedRaw = React.useSyncExternalStore(subscribeSaved, getSavedSnapshot, () => '[]');
   const savedIds: string[] = useMemo(() => {
@@ -289,16 +298,26 @@ function PropertiesContent() {
             </button>
           </div>
 
-          {activeTab === 'saved' && savedCount > 0 && (
-            <button
-              type="button"
-              onClick={handleClearAllSaved}
-              className="touch-manipulation text-xs font-medium text-stone-500 hover:text-red-600 flex items-center gap-1 px-3 py-2 rounded-lg transition-colors min-h-[40px]"
-            >
-              <Trash2 className="w-3.5 h-3.5" />
-              <span>Clear Saved Favorites</span>
-            </button>
-          )}
+          <div className="flex items-center gap-2">
+            <SharePageButton
+              title={activeTab === 'saved' ? 'Shortlisted Trophy Residences | Signature Aura' : 'Curated Luxury Property Portfolio | Signature Aura'}
+              text="Explore premier MahaRERA-verified luxury penthouses and estates with Signature Aura Developers"
+              buttonLabel={activeTab === 'saved' ? 'Share Shortlist' : 'Share Portfolio'}
+              variant="luxury"
+              size="sm"
+            />
+
+            {activeTab === 'saved' && savedCount > 0 && (
+              <button
+                type="button"
+                onClick={handleClearAllSaved}
+                className="touch-manipulation text-xs font-medium text-stone-500 hover:text-red-600 flex items-center gap-1 px-3 py-2 rounded-lg transition-colors min-h-[40px]"
+              >
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>Clear Saved Favorites</span>
+              </button>
+            )}
+          </div>
         </div>
 
         {/* Filter Bar Component */}

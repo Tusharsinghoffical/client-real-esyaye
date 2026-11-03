@@ -21,6 +21,7 @@ import AnnouncementBar from '@/components/layout/AnnouncementBar';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import FloatingContactSystem from '@/components/floating/FloatingContactSystem';
+import SharePageButton from '@/components/common/SharePageButton';
 import { SAMPLE_PROJECTS } from '@/lib/data/sample-data';
 import { getWhatsAppLink } from '@/lib/config';
 
@@ -74,13 +75,23 @@ export default function ProjectDetailClient({
 
       <main className="flex-1 pt-6 pb-24 md:py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-xs text-stone-500 mb-6">
-          <Link href="/" className="hover:text-stone-900">Home</Link>
-          <span aria-hidden="true">/</span>
-          <Link href="/projects" className="hover:text-stone-900">Projects</Link>
-          <span aria-hidden="true">/</span>
-          <span className="text-stone-900 font-medium truncate">{project.title}</span>
+        {/* Breadcrumb & Share */}
+        <div className="flex items-center justify-between gap-4 text-xs text-stone-500 mb-6">
+          <div className="flex items-center gap-2 min-w-0">
+            <Link href="/" className="hover:text-stone-900 transition-colors">Home</Link>
+            <span aria-hidden="true">/</span>
+            <Link href="/projects" className="hover:text-stone-900 transition-colors">Projects</Link>
+            <span aria-hidden="true">/</span>
+            <span className="text-stone-900 font-medium truncate">{project.title}</span>
+          </div>
+
+          <SharePageButton
+            title={project.title}
+            text={`Discover landmark development ${project.title} by ${project.developer} in ${project.city}`}
+            buttonLabel="Share Project"
+            variant="luxury"
+            size="sm"
+          />
         </div>
 
         {/* Hero Banner */}

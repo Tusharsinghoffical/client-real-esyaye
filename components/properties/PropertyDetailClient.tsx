@@ -30,6 +30,7 @@ import Footer from '@/components/layout/Footer';
 import FloatingContactSystem from '@/components/floating/FloatingContactSystem';
 import SiteVisitModal from '@/components/properties/SiteVisitModal';
 import PropertyCard from '@/components/properties/PropertyCard';
+import SharePageButton from '@/components/common/SharePageButton';
 import { SAMPLE_PROPERTIES } from '@/lib/data/sample-data';
 import { getPropertyBySlug, getSimilarProperties } from '@/lib/db';
 import { getWhatsAppLink } from '@/lib/config';
@@ -51,7 +52,6 @@ export default function PropertyDetailClient({
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [isSiteVisitOpen, setIsSiteVisitOpen] = useState(false);
-  const [copiedLink, setCopiedLink] = useState(false);
 
   const handlePrevImage = useCallback(() => {
     setActiveImageIndex(prev => (prev === 0 ? property.images.length - 1 : prev - 1));
@@ -119,14 +119,6 @@ export default function PropertyDetailClient({
     }
   };
 
-  const handleShare = () => {
-    if (typeof window !== 'undefined') {
-      navigator.clipboard.writeText(window.location.href);
-      setCopiedLink(true);
-      setTimeout(() => setCopiedLink(false), 2500);
-    }
-  };
-
   const whatsappDirectHref = getWhatsAppLink(
     undefined, 
     property.title, 
@@ -151,13 +143,13 @@ export default function PropertyDetailClient({
           </div>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={handleShare}
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-white border border-[#E8E5DF] hover:border-stone-400 rounded text-stone-700 transition-all"
-            >
-              <Share2 className="w-3.5 h-3.5 text-[#B99A63]" />
-              <span>{copiedLink ? 'Link Copied' : 'Share Residence'}</span>
-            </button>
+            <SharePageButton
+              title={property.title}
+              text={`Explore ${property.title} at ${property.location.locality}, ${property.location.city} with Signature Aura Developers`}
+              buttonLabel="Share Residence"
+              variant="luxury"
+              size="sm"
+            />
           </div>
         </div>
 
