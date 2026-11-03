@@ -884,7 +884,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Partner Details */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div>
                       <span className="text-[10px] font-semibold tracking-widest text-[#B99A63] uppercase block mb-1">
                         {partner.market}
@@ -892,11 +892,8 @@ export default function HomePage() {
                       <h3 className="font-serif text-xl text-[#171717] font-medium leading-snug">
                         {partner.name}
                       </h3>
-                      <p className="text-xs font-medium text-stone-700 mt-1">
-                        {partner.division}
-                      </p>
-                      <p className="text-xs text-stone-600 mt-3 leading-relaxed font-light">
-                        {partner.bio}
+                      <p className="text-xs text-stone-500 mt-1 font-medium">
+                        Partner & Director
                       </p>
                     </div>
 

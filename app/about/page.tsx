@@ -229,7 +229,7 @@ export default function AboutPage() {
                   </div>
 
                   {/* Partner Information */}
-                  <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
+                  <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
                     <div>
                       <span className="text-[10px] font-semibold tracking-widest text-[#B99A63] uppercase block mb-1">
                         {leader.market}
@@ -237,11 +237,8 @@ export default function AboutPage() {
                       <h3 className="font-serif text-xl text-[#171717] font-medium leading-snug">
                         {leader.name}
                       </h3>
-                      <p className="text-xs font-medium text-stone-700 mt-1">
-                        {leader.division}
-                      </p>
-                      <p className="text-xs text-stone-600 mt-3 leading-relaxed font-light">
-                        {leader.bio}
+                      <p className="text-xs text-stone-500 mt-1 font-medium">
+                        Partner & Director
                       </p>
                     </div>
 
