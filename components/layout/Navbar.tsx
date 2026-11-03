@@ -9,10 +9,7 @@ import {
   X, 
   Phone, 
   Heart, 
-  Search, 
-  ShieldCheck, 
-  ChevronRight,
-  ArrowUpRight
+  ChevronRight
 } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/lib/config';
 
@@ -132,14 +129,6 @@ export default function Navbar() {
                   {savedCount}
                 </span>
               )}
-            </Link>
-
-            {/* Admin Portal link */}
-            <Link 
-              href="/admin" 
-              className="text-[11px] xl:text-xs tracking-wider text-[#666666] hover:text-[#171717] px-3 py-1.5 border border-[#E8E5DF] hover:border-[#171717] rounded-full transition-all uppercase font-medium"
-            >
-              Portal
             </Link>
 
             {/* Direct Call Concierge CTA */}
@@ -291,15 +280,6 @@ export default function Navbar() {
                   Saved Residences ({savedCount})
                 </span>
                 <ChevronRight className="w-4 h-4 text-stone-400" />
-              </Link>
-
-              <Link
-                href="/admin"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between min-h-[48px] py-2 px-2 text-base text-stone-600 border-b border-[#E8E5DF]/60"
-              >
-                <span>Advisor & Console Portal</span>
-                <ArrowUpRight className="w-4 h-4 text-stone-400" />
               </Link>
 
               <div className="pt-4 flex flex-col gap-3">
