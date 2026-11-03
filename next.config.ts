@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
   },
   // High-performance image optimization configuration
   images: {
+    unoptimized: true,
     formats: ['image/avif', 'image/webp'],
     qualities: [75, 80, 85, 90, 100],
     minimumCacheTTL: 2592000, // 30 days caching

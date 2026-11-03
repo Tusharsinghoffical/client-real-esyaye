@@ -307,7 +307,7 @@ export default function RootLayout({
         {children}
 
         {/* First-Party Attribution & Conversion Tracking Pixel */}
-        <Script src="/pixel.js" strategy="afterInteractive" />
+        <script src="/pixel.js" defer />
       </body>
     </html>
   );
