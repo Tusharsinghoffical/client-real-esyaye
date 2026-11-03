@@ -24,32 +24,32 @@ function RotatingBrandLogo({
     <Link 
       href="/" 
       onClick={onClick}
-      className="relative w-36 sm:w-44 md:w-48 lg:w-56 xl:w-60 h-11 sm:h-12 md:h-13 lg:h-14 xl:h-[58px] flex items-center shrink-0 mr-2 sm:mr-4 group focus:outline-hidden"
+      className="relative w-36 sm:w-44 md:w-48 lg:w-56 xl:w-60 h-11 sm:h-12 md:h-13 lg:h-14 xl:h-[58px] flex items-center justify-center shrink-0 mr-2 sm:mr-4 group focus:outline-hidden"
       aria-label="Signature Aura Developers"
     >
-      {/* 1. 3D Architectural SA Luxury Emblem */}
+      {/* 1. 3D Architectural SA Luxury Emblem (Centered & Enlarged to match slot) */}
       <div 
-        className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${
+        className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out ${
           logoMode === 'emblem' 
             ? 'opacity-100 scale-100 pointer-events-auto' 
             : 'opacity-0 scale-95 pointer-events-none'
         }`}
       >
-        <div className="relative w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 lg:w-14 lg:h-14 xl:w-[58px] xl:h-[58px] shrink-0 drop-shadow-md group-hover:scale-105 transition-transform duration-300">
+        <div className="relative w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-[68px] xl:h-[68px] shrink-0 drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
           <Image
             src="/assets/branding/logo-emblem.png"
             alt="Signature Aura Developers Emblem"
             fill
-            sizes="(max-width: 640px) 48px, 60px"
-            className="object-contain object-left"
+            sizes="(max-width: 640px) 56px, 72px"
+            className="object-contain"
             priority
           />
         </div>
       </div>
 
-      {/* 2. Full Brand Wordmark Banner: SIGNATURE AURA DEVELOPERS */}
+      {/* 2. Full Brand Wordmark Banner: SIGNATURE AURA DEVELOPERS (Centered) */}
       <div 
-        className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${
+        className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out ${
           logoMode === 'text' 
             ? 'opacity-100 scale-100 pointer-events-auto' 
             : 'opacity-0 scale-95 pointer-events-none'
@@ -61,7 +61,7 @@ function RotatingBrandLogo({
             alt="Signature Aura Developers"
             fill
             sizes="(max-width: 640px) 176px, 240px"
-            className="object-contain object-left"
+            className="object-contain"
             priority
           />
         </div>
