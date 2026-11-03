@@ -450,7 +450,7 @@ export default function AdminPage() {
           
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0">
+              <div className="relative w-8 h-8 shrink-0 drop-shadow-sm">
                 <Image
                   src="/assets/branding/logo-circle.png"
                   alt="Signature Aura Developers"
