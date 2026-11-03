@@ -21,12 +21,12 @@ export default function Footer() {
           {/* Brand & Advisory Overview */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="inline-block group">
-              <div className="relative w-64 sm:w-72 h-32 sm:h-36 overflow-hidden rounded-2xl border border-[#B99A63]/30 shadow-xl group-hover:border-[#B99A63] transition-all bg-black/80">
+              <div className="relative w-56 sm:w-64 md:w-72 h-28 sm:h-32 md:h-36">
                 <Image
-                  src="/assets/branding/logo-combined.jpg"
+                  src="/assets/branding/logo-combined-transparent.png"
                   alt="Signature Aura Developers - Premier Real Estate"
                   fill
-                  className="object-contain p-1.5 group-hover:scale-102 transition-transform duration-500"
+                  className="object-contain object-left group-hover:scale-105 transition-transform duration-300"
                 />
               </div>
             </Link>
