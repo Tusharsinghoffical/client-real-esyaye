@@ -160,11 +160,11 @@ export default function HomePage() {
           {/* Background Image with subtle cinematic dark overlay */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80"
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=75"
               alt="Luxury residence oceanfront"
               fill
               priority
-              quality={80}
+              quality={75}
               placeholder="blur"
               blurDataURL={SHIMMER_BLUR_DATA_URL}
               sizes="100vw"
@@ -709,9 +709,13 @@ export default function HomePage() {
             <div className="lg:col-span-5 relative">
               <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl bg-stone-200">
                 <Image
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80"
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=75"
                   alt="Signature Aura™ Corporate Real Estate Office"
                   fill
+                  loading="lazy"
+                  placeholder="blur"
+                  blurDataURL={SHIMMER_BLUR_DATA_URL}
+                  sizes="(max-width: 1024px) 100vw, 40vw"
                   className="object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -848,6 +852,8 @@ export default function HomePage() {
                         src={partner.photo}
                         alt={partner.name}
                         fill
+                        loading="lazy"
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                         referrerPolicy="no-referrer"
                       />
@@ -961,6 +967,8 @@ export default function HomePage() {
                         src={test.avatarUrl}
                         alt={test.clientName}
                         fill
+                        loading="lazy"
+                        sizes="40px"
                         className="object-cover"
                         referrerPolicy="no-referrer"
                       />

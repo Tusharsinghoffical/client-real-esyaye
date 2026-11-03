@@ -18,6 +18,7 @@ import {
   MessageCircle
 } from 'lucide-react';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '@/lib/config';
+import ChatMessageContent from './ChatMessageContent';
 
 interface ChatMessage {
   id: string;
@@ -49,11 +50,13 @@ export default function AIChatAssistant() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const quickPrompts = [
+    { label: 'Plots & Acres (JV)', query: 'What land parcels, acres, and builder joint ventures are available in Pune?' },
+    { label: 'Marquee Projects', query: 'Show marquee projects and landmark developments' },
     { label: 'Worli Penthouses', query: 'Show me sea-facing penthouses in Worli, Mumbai' },
     { label: 'Baner-Sus Pune', query: 'What properties are available in Baner-Sus, Pune?' },
+    { label: 'Services & Advisory', query: 'What advisory services does Signature Aura offer?' },
     { label: '30-Year Title Diligence', query: 'How does Signature Aura verify 30-year property titles?' },
     { label: 'Goa Luxury Villas', query: 'Tell me about private villas in Assagao, Goa' },
-    { label: 'NRI Repatriation & FEMA', query: 'What are the FEMA rules for NRI real estate repatriation?' },
   ];
 
   const scrollToBottom = () => {
@@ -247,12 +250,8 @@ export default function AIChatAssistant() {
                     </div>
                   )}
 
-                  <div className="whitespace-pre-wrap break-words space-y-1.5 font-light">
-                    {m.content.split('\n\n').map((paragraph, pIdx) => (
-                      <p key={pIdx}>
-                        {paragraph.replace(/\*\*(.*?)\*\*/g, '$1')}
-                      </p>
-                    ))}
+                  <div className="font-light">
+                    <ChatMessageContent content={m.content} isUser={m.role === 'user'} />
                   </div>
                 </div>
               </div>

@@ -89,6 +89,29 @@ const STATIC_KNOWLEDGE: KnowledgeChunk[] = [
 - Option for chauffeured airport or hotel transfer for outstation clients.
 - Site visits can be scheduled directly through the chatbot or website by providing name, phone, email, and preferred date.`,
     tags: ['site visit', 'viewing', 'booking', 'schedule', 'inspection', 'tour', 'chauffeured', 'appointment']
+  },
+  {
+    id: 'land-aggregation-plots',
+    title: 'Strategic Land Aggregation, Plots, Acres & Builder Joint Ventures (JV)',
+    category: 'Service',
+    url: '/services',
+    content: `Signature Aura Pvt. Ltd. commands deep authority in strategic land procurement and builder joint ventures across Maharashtra under Founding Partner Rakesh Desale Patil:
+- Over 250+ acres successfully aggregated across Pune's western growth corridor: Baner-Sus, Balewadi, Mahalunge, Hinjawadi Phase 1-3, and Mulshi.
+- Verified clear-title NA plots, residential plotting layouts, and industrial/warehousing land parcels.
+- Developer Joint Ventures (JV / JD): Structuring win-win revenue sharing and area sharing agreements between landowners and Tier-1 institutional builders.
+- Full statutory zoning conversion from agricultural to Non-Agricultural (NA), Town Planning (TP) sanctions, and DP road access verification.`,
+    tags: ['plot', 'plots', 'land', 'acre', 'acres', 'joint venture', 'jv', 'na land', 'agricultural', 'farmhouse', 'hinjawadi', 'baner-sus']
+  },
+  {
+    id: 'marquee-projects-overview',
+    title: 'Marquee Landmark Developments & New Launches',
+    category: 'Project',
+    url: '/projects',
+    content: `Signature Aura represents marquee residential and commercial developments:
+1. The Aurelia Reserve (Worli Sea Face, Mumbai): Ultra-luxury 4 & 5 BHK Sky Mansions with Arabian Sea panoramas, designed by Foster + Partners. Handover Q4 2027 (MahaRERA: P51900034891).
+2. The Heritage Pines (Assagao, North Goa): Gated enclave of 12 private Portuguese heritage estates with private pools, teakwood ceilings, and bespoke concierge (Goa RERA: PRGO08211470).
+3. Solitaire Towers (Golf Course Ext. Road, Gurgaon): Grade-A LEED Gold corporate office plates & luxury sky suites (HRERA: HRERA-GGM-112-2023).`,
+    tags: ['projects', 'developments', 'aurelia', 'heritage pines', 'solitaire', 'worli', 'goa', 'gurgaon', 'new launch']
   }
 ];
 

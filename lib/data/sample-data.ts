@@ -52,19 +52,19 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Grand living pavilion overlooking the Arabian Sea'
       },
       {
-        url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Master suite with private sea-facing terrace'
       },
       {
-        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Custom marble kitchen with Miele appliances'
       },
       {
-        url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Private sunset deck and infinity plunge pool'
       }
     ],
@@ -140,15 +140,15 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Sprawling living room overlooking the championship golf greens'
       },
       {
-        url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Chef kitchen with bespoke Poggenpohl cabinetry'
       },
       {
-        url: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Expansive wrap-around balcony facing the fairway'
       }
     ],
@@ -224,15 +224,15 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Portuguese colonial facade with courtyard pool'
       },
       {
-        url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Verandah with hand-carved pillars and lush tropical garden'
       },
       {
-        url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'High-vaulted timber ceiling living hall'
       }
     ],
@@ -307,11 +307,11 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Duplex living area with double height floor-to-ceiling glass'
       },
       {
-        url: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Dining room connecting to glass wine cellar'
       }
     ],
@@ -385,11 +385,11 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Panoramic balcony overlooking Cubbon Park greens'
       },
       {
-        url: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Contemporary minimalist master suite'
       }
     ],
@@ -464,11 +464,11 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Grand illuminated exterior with fountain courtyard'
       },
       {
-        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Triple height marble reception foyer'
       }
     ],
@@ -541,7 +541,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Boutique living space opening onto landscaped deck'
       }
     ],
@@ -612,7 +612,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Spacious salon-style drawing room overlooking park greens'
       }
     ],
@@ -686,11 +686,11 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Boutique coastal living area facing the Arabian Sea'
       },
       {
-        url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Designer open kitchen with breakfast island'
       }
     ],
@@ -760,7 +760,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Sleek contemporary interior designed for corporate executives'
       }
     ],
@@ -830,7 +830,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Poolside cabana and tropical garden'
       }
     ],
@@ -900,7 +900,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Sky deck garden overlooking lush green Bengaluru canopies'
       }
     ],
@@ -975,11 +975,11 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Grand double-height corporate glass lobby'
       },
       {
-        url: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Panoramic column-free floor plate'
       }
     ],
@@ -1050,7 +1050,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Bespoke corporate reception and executive conference room'
       }
     ],
@@ -1121,7 +1121,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Glass facade of the eco-friendly tech park campus'
       }
     ],
@@ -1192,7 +1192,7 @@ export const SAMPLE_PROPERTIES: Property[] = [
     ],
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80',
+        url: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
         caption: 'Heritage colonnade retail storefront with high visibility'
       }
     ],
@@ -1235,11 +1235,11 @@ export const SAMPLE_PROJECTS: ProjectDevelopment[] = [
     priceStartingFrom: '₹ 18.5 Cr onwards',
     configurations: '4, 5 BHK Sky Mansions & Duplexes (4,200 – 7,800 sq.ft.)',
     reraNumber: 'P51900034891',
-    heroImage: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1600&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
     galleryImages: [
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80'
+      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75'
     ],
     overview: 'Rising 60 storeys above the Arabian Sea, The Aurelia Reserve represents a paradigm shift in Indian luxury high-rise engineering. Designed by world-renowned architects Foster + Partners, each residence features 3.6-meter clear ceiling heights, private elevator foyers, and a 50,000 sq.ft. signature residents-only club managed by Dorchester Collection.',
     highlights: [
@@ -1264,10 +1264,10 @@ export const SAMPLE_PROJECTS: ProjectDevelopment[] = [
     priceStartingFrom: '₹ 14.8 Cr onwards',
     configurations: '4 & 5 BHK Private Pool Estates (5,000 – 7,500 sq.ft.)',
     reraNumber: 'PRGO11211590',
-    heroImage: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1600&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
     galleryImages: [
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1600&q=80'
+      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75'
     ],
     overview: 'Nestled in a verdant valley in Assagao, The Heritage Pines is an intimate sanctuary of twelve bespoke estates. Each villa combines Portuguese colonial verandas with modern structural glazing, heated private saltwater lap pools, and curated tropical botanical gardens with mature fruit trees.',
     highlights: [
@@ -1292,10 +1292,10 @@ export const SAMPLE_PROJECTS: ProjectDevelopment[] = [
     priceStartingFrom: '₹ 9.5 Cr onwards',
     configurations: '3.5 & 4.5 BHK Luxury Condos (3,200 – 4,800 sq.ft.)',
     reraNumber: 'HRERA-GGM-114-2024',
-    heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80',
+    heroImage: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
     galleryImages: [
-      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1600&q=80',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=80'
+      'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75',
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&auto=format&fit=crop&q=75'
     ],
     overview: 'An eco-futuristic residential marvel set along Golf Course Extension Road. Designed with bioclimatic facade technology that naturally insulates residences against thermal heat. Featuring a 70,000 sq.ft. multi-level recreational clubhouse, indoor temperature-controlled Olympic pool, and private padel tennis courts.',
     highlights: [

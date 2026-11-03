@@ -32,6 +32,7 @@ import {
 } from 'lucide-react';
 import { BUSINESS_CONFIG, getWhatsAppLink } from '@/lib/config';
 import { SAMPLE_PROPERTIES } from '@/lib/data/sample-data';
+import ChatMessageContent from './ChatMessageContent';
 
 interface SourceCitation {
   title: string;
@@ -115,12 +116,13 @@ export default function PropertyAssistantModal({
 
   // Curated RAG exploration questions for real estate buyers & investors
   const quickCategories = [
+    { label: 'Plots & Acres (JV)', query: 'What land parcels, acres, and builder joint ventures are available in Pune?' },
+    { label: 'Marquee Projects', query: 'Show marquee projects and new landmark developments' },
     { label: 'Worli Penthouses', query: 'Show sea-facing penthouses in Worli with Arabian Sea views' },
     { label: 'Pune Baner-Sus', query: 'What properties and IT park floors are available in Baner-Sus Pune?' },
     { label: 'Goan Beach Villas', query: 'Show luxury private pool villas in Assagao and Candolim Goa' },
+    { label: 'Services & Advisory', query: 'What services does Signature Aura offer?' },
     { label: '30-Yr Title Audit', query: 'How does Signature Aura perform forensic 30-year title due diligence?' },
-    { label: 'MahaRERA Numbers', query: 'What are the official MahaRERA registration numbers for your projects?' },
-    { label: 'Commercial BKC', query: 'Show Grade-A corporate office floorplates in BKC Mumbai' },
     { label: 'NRI Investment (FEMA)', query: 'What are the RBI and FEMA guidelines for NRIs buying luxury property?' },
     { label: 'Managing Partners', query: 'Who are the Partners at Signature Aura and their real estate divisions?' }
   ];
@@ -647,25 +649,8 @@ export default function PropertyAssistantModal({
                     )}
 
                     {/* Formatted Markdown-like Message Content */}
-                    <div className="space-y-2 whitespace-pre-wrap break-words font-light">
-                      {msg.content.split('\n\n').map((para, i) => {
-                        if (para.startsWith('•') || para.startsWith('-') || para.startsWith('1.')) {
-                          return (
-                            <div key={i} className="pl-1 space-y-1">
-                              {para.split('\n').map((line, lineIdx) => (
-                                <p key={lineIdx} className="text-stone-800">
-                                  {line.replace(/\*\*(.*?)\*\*/g, '$1')}
-                                </p>
-                              ))}
-                            </div>
-                          );
-                        }
-                        return (
-                          <p key={i}>
-                            {para.replace(/\*\*(.*?)\*\*/g, '$1')}
-                          </p>
-                        );
-                      })}
+                    <div className="font-light">
+                      <ChatMessageContent content={msg.content} isUser={msg.role === 'user'} />
                     </div>
 
                     {/* RAG Sources Citations Pills */}
