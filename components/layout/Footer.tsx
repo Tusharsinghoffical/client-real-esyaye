@@ -75,13 +75,14 @@ export default function Footer() {
           {/* Brand & Corporate Overview (5 Cols) */}
           <div className="lg:col-span-5 space-y-5">
             <Link href="/" className="inline-block group focus:outline-hidden">
-              <div className="relative w-64 sm:w-72 h-14 sm:h-16">
+              <div className="relative w-72 sm:w-80 md:w-96 lg:w-[420px] h-36 sm:h-40 md:h-48 lg:h-52 -ml-1 sm:-ml-2">
                 <Image
                   src="/assets/branding/logo-combined-transparent.png"
                   alt="Signature Aura Developers - Premier Luxury Property Consultancy"
                   fill
-                  sizes="(max-width: 640px) 256px, 288px"
-                  className="object-contain object-left group-hover:opacity-90 transition-opacity"
+                  sizes="(max-width: 640px) 288px, (max-width: 1024px) 384px, 420px"
+                  className="object-contain object-left group-hover:scale-[1.02] transition-transform duration-300"
+                  priority
                 />
               </div>
             </Link>
