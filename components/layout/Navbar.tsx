@@ -17,51 +17,51 @@ function RotatingBrandLogo({
   logoMode, 
   onClick 
 }: { 
-  logoMode: 'emblem' | 'text'; 
+  logoMode: 'brand' | 'text'; 
   onClick?: () => void; 
 }) {
   return (
     <Link 
       href="/" 
       onClick={onClick}
-      className="relative w-36 sm:w-44 md:w-48 lg:w-56 xl:w-60 h-11 sm:h-12 md:h-13 lg:h-14 xl:h-[58px] flex items-center justify-center shrink-0 mr-2 sm:mr-4 group focus:outline-hidden"
+      className="relative w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-11 sm:h-12 md:h-13 lg:h-14 xl:h-[58px] flex items-center shrink-0 mr-2 sm:mr-4 group focus:outline-hidden"
       aria-label="Signature Aura Developers"
     >
-      {/* 1. 3D Architectural SA Luxury Emblem (Centered & Enlarged to match slot) */}
+      {/* 1. Full Brand Logo: 3D SA Emblem + Signature Aura Developers (Shown First) */}
       <div 
-        className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out ${
-          logoMode === 'emblem' 
+        className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${
+          logoMode === 'brand' 
             ? 'opacity-100 scale-100 pointer-events-auto' 
             : 'opacity-0 scale-95 pointer-events-none'
         }`}
       >
-        <div className="relative w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 lg:w-16 lg:h-16 xl:w-[68px] xl:h-[68px] shrink-0 drop-shadow-lg group-hover:scale-105 transition-transform duration-300">
+        <div className="relative w-full h-full shrink-0 drop-shadow-md group-hover:scale-[1.02] transition-transform duration-300">
           <Image
-            src="/assets/branding/logo-emblem.png"
-            alt="Signature Aura Developers Emblem"
+            src="/assets/branding/logo-full-brand.png"
+            alt="Signature Aura Developers"
             fill
-            sizes="(max-width: 640px) 56px, 72px"
-            className="object-contain"
+            sizes="(max-width: 640px) 192px, 288px"
+            className="object-contain object-left"
             priority
           />
         </div>
       </div>
 
-      {/* 2. Full Brand Wordmark Banner: SIGNATURE AURA DEVELOPERS (Centered) */}
+      {/* 2. Full Brand Wordmark Banner: SIGNATURE AURA DEVELOPERS (Shown after 20s) */}
       <div 
-        className={`absolute inset-0 flex items-center justify-center transition-all duration-700 ease-in-out ${
+        className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${
           logoMode === 'text' 
             ? 'opacity-100 scale-100 pointer-events-auto' 
             : 'opacity-0 scale-95 pointer-events-none'
         }`}
       >
-        <div className="relative w-36 sm:w-44 md:w-48 lg:w-56 xl:w-60 h-10 sm:h-11 md:h-12 lg:h-13 xl:h-14 shrink-0 drop-shadow-xs group-hover:scale-[1.02] transition-transform duration-300">
+        <div className="relative w-full h-full shrink-0 drop-shadow-xs group-hover:scale-[1.02] transition-transform duration-300">
           <Image
             src="/assets/branding/logo-text.png"
             alt="Signature Aura Developers"
             fill
-            sizes="(max-width: 640px) 176px, 240px"
-            className="object-contain"
+            sizes="(max-width: 640px) 192px, 288px"
+            className="object-contain object-left"
             priority
           />
         </div>
@@ -74,13 +74,13 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
-  const [logoMode, setLogoMode] = useState<'emblem' | 'text'>('emblem');
+  const [logoMode, setLogoMode] = useState<'brand' | 'text'>('brand');
   const pathname = usePathname();
 
   // Automatic logo swap every 20 seconds without page refresh or user interaction
   useEffect(() => {
     const timer = setInterval(() => {
-      setLogoMode((prev) => (prev === 'emblem' ? 'text' : 'emblem'));
+      setLogoMode((prev) => (prev === 'brand' ? 'text' : 'brand'));
     }, 20000);
 
     return () => clearInterval(timer);
