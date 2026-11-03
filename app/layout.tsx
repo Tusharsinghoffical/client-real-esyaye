@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { Playfair_Display, Plus_Jakarta_Sans } from 'next/font/google';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import { BUSINESS_CONFIG } from '@/lib/config';
 
@@ -305,6 +307,8 @@ export default function RootLayout({
       </head>
       <body className="antialiased selection:bg-[#B99A63]/25 font-sans" suppressHydrationWarning>
         {children}
+        <Analytics />
+        <SpeedInsights />
 
         {/* First-Party Attribution & Conversion Tracking Pixel */}
         <script src="/pixel.js" defer />
