@@ -185,22 +185,13 @@ export default function FloatingContactSystem() {
       )}
 
       {/* =========================================================================
-          MOBILE FLOATING ACTION BUTTONS (Non-intrusive, Safe-area Aware, Hidden when Chat Open)
+          MOBILE & TABLET FLOATING ACTION BUTTONS (Vertical Stack, Safe-area Aware)
          ========================================================================= */}
       {!isChatModalOpen && !isCallbackModalOpen && (
         <aside 
           aria-label="Mobile quick actions" 
-          className="md:hidden fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 z-40 flex items-center gap-2 pointer-events-auto animate-in fade-in"
+          className="md:hidden fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 z-40 flex flex-col items-end gap-2.5 pointer-events-auto animate-in fade-in"
         >
-          {/* Quick Callback Trigger */}
-          <button
-            onClick={() => setIsCallbackModalOpen(true)}
-            aria-label="Request callback consultation"
-            className="touch-manipulation w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white text-[#171717] border border-[#E8E5DF] flex items-center justify-center shadow-lg active:scale-95 transition-transform"
-          >
-            <Mail className="w-5 h-5 text-[#B99A63]" />
-          </button>
-
           {/* AI Assistant Floating Button */}
           <button
             onClick={() => setIsChatModalOpen(true)}
@@ -219,6 +210,15 @@ export default function FloatingContactSystem() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#B99A63] opacity-75"></span>
               <span className="relative inline-flex rounded-full h-3 w-3 bg-[#B99A63] border border-[#171717]"></span>
             </span>
+          </button>
+
+          {/* Quick Callback Trigger */}
+          <button
+            onClick={() => setIsCallbackModalOpen(true)}
+            aria-label="Request callback consultation"
+            className="touch-manipulation w-11 h-11 min-w-[44px] min-h-[44px] rounded-full bg-white text-[#171717] border border-[#E8E5DF] flex items-center justify-center shadow-lg active:scale-95 transition-transform"
+          >
+            <Mail className="w-5 h-5 text-[#B99A63]" />
           </button>
 
           {/* WhatsApp Floating Button */}
