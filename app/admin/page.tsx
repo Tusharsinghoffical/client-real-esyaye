@@ -27,8 +27,11 @@ import {
   ShieldCheck,
   Filter,
   Save,
+  Key,
   Sparkles,
-  ExternalLink
+  ExternalLink,
+  RotateCcw,
+  Database
 } from 'lucide-react';
 import { Property, Lead, SiteVisit, BusinessConfig, LeadStatus } from '@/types/real-estate';
 import { BUSINESS_CONFIG, formatINR } from '@/lib/config';
@@ -149,23 +152,183 @@ export default function AdminPage() {
     };
   }, [isAuthenticated]);
 
-  const handleLogin = (e: React.FormEvent) => {
+  // Realtime Live Stream Listener
+  const [isRealtimeConnected, setIsRealtimeConnected] = useState(false);
+  const [isResettingDb, setIsResettingDb] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthenticated) return;
+
+    let eventSource: EventSource | null = null;
+    try {
+      eventSource = new EventSource('/api/realtime');
+
+      eventSource.onopen = () => {
+        setIsRealtimeConnected(true);
+      };
+
+      eventSource.addEventListener('change', (e: MessageEvent) => {
+        try {
+          const payload = JSON.parse(e.data);
+          if (payload.table === 'leads' || payload.table === 'all') {
+            fetch('/api/leads').then(r => r.json()).then(d => d.leads && setLeads(d.leads));
+          }
+          if (payload.table === 'site_visits' || payload.table === 'all') {
+            fetch('/api/site-visits').then(r => r.json()).then(d => d.visits && setVisits(d.visits));
+          }
+          if (payload.table === 'properties' || payload.table === 'all') {
+            fetch('/api/properties').then(r => r.json()).then(d => d.properties && setProperties(d.properties));
+          }
+          if (payload.table === 'settings' || payload.table === 'all') {
+            fetch('/api/settings').then(r => r.json()).then(d => d.settings && setSettings(d.settings));
+          }
+        } catch {
+          // ignore
+        }
+      });
+
+      eventSource.onerror = () => {
+        setIsRealtimeConnected(false);
+      };
+    } catch {
+      setIsRealtimeConnected(false);
+    }
+
+    // Fallback polling every 10 seconds
+    const interval = setInterval(() => {
+      fetch('/api/leads').then(r => r.json()).then(d => d.leads && setLeads(d.leads)).catch(() => {});
+      fetch('/api/site-visits').then(r => r.json()).then(d => d.visits && setVisits(d.visits)).catch(() => {});
+    }, 10000);
+
+    return () => {
+      if (eventSource) eventSource.close();
+      clearInterval(interval);
+      setIsRealtimeConnected(false);
+    };
+  }, [isAuthenticated]);
+
+  // Change Password State
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordMsg, setPasswordMsg] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [isChangingPassword, setIsChangingPassword] = useState(false);
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Default PIN: 2026 or master aura888
-    if (adminPin === '2026' || adminPin === 'aura888' || adminPin === 'admin') {
-      sessionStorage.setItem('aura_admin_authenticated', 'true');
-      window.dispatchEvent(new Event('aura_admin_auth_changed'));
-      setLocalAuthOverride(true);
-      setAuthError('');
-    } else {
-      setAuthError('Incorrect PIN. (Demo access PIN: 2026)');
+    setAuthError('');
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: adminPin })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        sessionStorage.setItem('aura_admin_authenticated', 'true');
+        if (data.token) {
+          localStorage.setItem('aura_admin_token', data.token);
+        }
+        window.dispatchEvent(new Event('aura_admin_auth_changed'));
+        setLocalAuthOverride(true);
+        setAuthError('');
+      } else {
+        setAuthError(data.error || 'Incorrect password. Access denied.');
+      }
+    } catch {
+      setAuthError('Failed to communicate with authentication server.');
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+    } catch {}
     sessionStorage.removeItem('aura_admin_authenticated');
+    localStorage.removeItem('aura_admin_token');
     window.dispatchEvent(new Event('aura_admin_auth_changed'));
     setLocalAuthOverride(false);
+  };
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setPasswordMsg('');
+    setPasswordError('');
+
+    if (newPassword !== confirmPassword) {
+      setPasswordError('New passwords do not match.');
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      setPasswordError('Password must be at least 6 characters.');
+      return;
+    }
+
+    setIsChangingPassword(true);
+    try {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('aura_admin_token') : '';
+      const res = await fetch('/api/auth/change-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        },
+        body: JSON.stringify({ currentPassword, newPassword })
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setPasswordMsg('Password successfully changed and encrypted in SQLite database!');
+        setCurrentPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+      } else {
+        setPasswordError(data.error || 'Failed to change password.');
+      }
+    } catch {
+      setPasswordError('Network error while updating password.');
+    } finally {
+      setIsChangingPassword(false);
+    }
+  };
+
+  const handleResetDatabase = async () => {
+    if (!confirm('Are you sure you want to reset the local SQLite database? All properties, leads, visits, and settings will be restored to clean initial seed data.')) {
+      return;
+    }
+    setIsResettingDb(true);
+    try {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('aura_admin_token') : '';
+      const res = await fetch('/api/db/reset', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        }
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        alert('Database has been successfully reset to clean initial seeds!');
+        Promise.all([
+          fetch('/api/properties').then(r => r.json()),
+          fetch('/api/leads').then(r => r.json()),
+          fetch('/api/site-visits').then(r => r.json()),
+          fetch('/api/settings').then(r => r.json())
+        ]).then(([p, l, v, s]) => {
+          if (p.properties) setProperties(p.properties);
+          if (l.leads) setLeads(l.leads);
+          if (v.visits) setVisits(v.visits);
+          if (s.settings) setSettings(s.settings);
+        });
+      } else {
+        alert(data.error || 'Failed to reset database.');
+      }
+    } catch {
+      alert('Network error while resetting database.');
+    } finally {
+      setIsResettingDb(false);
+    }
   };
 
   // Toggle Property Published
@@ -392,20 +555,17 @@ export default function AdminPage() {
 
             <div>
               <label className="block text-xs font-medium text-stone-300 mb-1">
-                Enter Master Security PIN
+                Enter Master Security Password
               </label>
               <input
                 type="password"
                 required
-                placeholder="Enter 2026"
+                placeholder="Enter password"
                 value={adminPin}
                 onChange={(e) => setAdminPin(e.target.value)}
                 suppressHydrationWarning
                 className="w-full bg-[#171717] border border-[#333333] focus:border-[#B99A63] text-white px-3.5 py-2.5 rounded text-sm text-center tracking-widest focus:outline-none"
               />
-              <span className="text-[11px] text-stone-500 block mt-1">
-                Demo Security PIN: <strong className="text-stone-300">2026</strong> or <strong className="text-stone-300">admin</strong>
-              </span>
             </div>
 
             <button
@@ -471,6 +631,12 @@ export default function AdminPage() {
             <span className="hidden sm:inline text-xs text-stone-400">
               Advisor & Management Console
             </span>
+            <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-950/50 border border-emerald-600/40 text-[11px] text-emerald-400">
+              <span className={`w-1.5 h-1.5 rounded-full ${isRealtimeConnected ? 'bg-emerald-400 animate-pulse' : 'bg-stone-500'}`} />
+              <span className="font-mono text-[10px] tracking-wider uppercase font-semibold">
+                {isRealtimeConnected ? 'Realtime Live' : 'Connecting...'}
+              </span>
+            </div>
           </div>
 
           <div className="flex items-center gap-4 text-xs">
@@ -1367,7 +1533,8 @@ export default function AdminPage() {
             TAB 5: BUSINESS SETTINGS
            ===================================================================== */}
         {activeTab === 'settings' && (
-          <div className="max-w-3xl bg-white border border-[#E8E5DF] rounded-2xl p-8 shadow-xs space-y-6">
+          <div className="space-y-8">
+            <div className="max-w-3xl bg-white border border-[#E8E5DF] rounded-2xl p-8 shadow-xs space-y-6">
             <div>
               <h2 className="font-serif text-3xl text-[#171717]">Business & Contact Settings</h2>
               <p className="text-xs text-stone-500 mt-1">
@@ -1473,7 +1640,133 @@ export default function AdminPage() {
               </div>
             </form>
           </div>
-        )}
+
+          {/* Security & Password Management Card */}
+          <div className="max-w-3xl bg-white border border-[#E8E5DF] rounded-2xl p-8 shadow-xs space-y-6">
+            <div>
+              <h2 className="font-serif text-3xl text-[#171717]">Portal Security & Encryption</h2>
+              <p className="text-xs text-stone-500 mt-1">
+                Your portal access is secured with salted cryptographic <strong className="text-stone-700">scrypt</strong> encryption in the local SQLite database.
+              </p>
+            </div>
+
+            <form onSubmit={handleChangePassword} className="space-y-4">
+              {passwordMsg && (
+                <div className="p-3 bg-emerald-950/20 border border-emerald-600 text-emerald-800 text-xs rounded">
+                  {passwordMsg}
+                </div>
+              )}
+              {passwordError && (
+                <div className="p-3 bg-red-950/20 border border-red-600 text-red-800 text-xs rounded">
+                  {passwordError}
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-xs font-medium text-stone-700 mb-1">Current Password *</label>
+                  <input
+                    type="password"
+                    required
+                    value={currentPassword}
+                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    placeholder="Enter current password"
+                    className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3.5 py-2 rounded text-xs text-[#171717]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-stone-700 mb-1">New Password (min 6 chars) *</label>
+                  <input
+                    type="password"
+                    required
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="Enter new password"
+                    className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3.5 py-2 rounded text-xs text-[#171717]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-stone-700 mb-1">Confirm New Password *</label>
+                  <input
+                    type="password"
+                    required
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Repeat new password"
+                    className="w-full bg-[#FAF9F5] border border-[#E8E5DF] px-3.5 py-2 rounded text-xs text-[#171717]"
+                  />
+                </div>
+              </div>
+
+              <div className="pt-2 flex justify-end">
+                <button
+                  type="submit"
+                  disabled={isChangingPassword}
+                  className="bg-[#B99A63] hover:bg-[#a68853] text-[#171717] text-xs font-semibold tracking-wider uppercase px-6 py-2.5 rounded transition-all flex items-center gap-1.5 shadow disabled:opacity-50"
+                >
+                  <Key className="w-4 h-4" />
+                  <span>{isChangingPassword ? 'Encrypting & Saving...' : 'Update & Encrypt Password'}</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* SQLite Database & Realtime Sync Card */}
+          <div className="max-w-3xl bg-white border border-[#E8E5DF] rounded-2xl p-8 shadow-xs space-y-6">
+            <div className="flex items-start justify-between">
+              <div>
+                <h2 className="font-serif text-3xl text-[#171717] flex items-center gap-2">
+                  <Database className="w-6 h-6 text-[#B99A63]" />
+                  <span>Local SQLite & Realtime Engine</span>
+                </h2>
+                <p className="text-xs text-stone-500 mt-1">
+                  High-performance local database <code className="bg-[#FAF9F5] px-1.5 py-0.5 rounded border border-[#E8E5DF] text-stone-700">data/signature_aura.db</code> with WAL mode and Server-Sent Events (SSE) live broadcast.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 bg-emerald-50 border border-emerald-200 px-3 py-1.5 rounded-full text-xs text-emerald-800 font-medium">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>Realtime Active</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+              <div className="bg-[#FAF9F5] border border-[#E8E5DF] rounded-xl p-4">
+                <div className="text-[11px] uppercase tracking-wider text-stone-400 font-semibold mb-1">Database Engine</div>
+                <div className="text-sm font-semibold text-[#171717]">SQLite 3 (WAL Mode)</div>
+                <div className="text-[11px] text-stone-500 mt-0.5">Zero external latency</div>
+              </div>
+              <div className="bg-[#FAF9F5] border border-[#E8E5DF] rounded-xl p-4">
+                <div className="text-[11px] uppercase tracking-wider text-stone-400 font-semibold mb-1">Live Sync Protocol</div>
+                <div className="text-sm font-semibold text-[#171717]">Server-Sent Events</div>
+                <div className="text-[11px] text-stone-500 mt-0.5">Instant multi-tab push</div>
+              </div>
+              <div className="bg-[#FAF9F5] border border-[#E8E5DF] rounded-xl p-4">
+                <div className="text-[11px] uppercase tracking-wider text-stone-400 font-semibold mb-1">Storage Location</div>
+                <div className="text-sm font-semibold text-[#171717]">Local Persistent</div>
+                <div className="text-[11px] text-stone-500 mt-0.5">Isolated from Git tracking</div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-[#E8E5DF] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <div className="text-xs font-semibold text-stone-800">Reset Database to Default Seeds</div>
+                <div className="text-xs text-stone-500">Restores clean property listings, initial leads, and site visit logs.</div>
+              </div>
+              <button
+                type="button"
+                onClick={handleResetDatabase}
+                disabled={isResettingDb}
+                className="bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-xs font-semibold tracking-wider uppercase px-5 py-2.5 rounded transition-all flex items-center gap-2 disabled:opacity-50"
+              >
+                <RotateCcw className={`w-3.5 h-3.5 ${isResettingDb ? 'animate-spin' : ''}`} />
+                <span>{isResettingDb ? 'Resetting Database...' : 'Reset Database'}</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       </main>
 

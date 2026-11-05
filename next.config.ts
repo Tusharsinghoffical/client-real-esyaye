@@ -2,6 +2,7 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  serverExternalPackages: ['node:sqlite'],
   eslint: {
     ignoreDuringBuilds: false,
   },

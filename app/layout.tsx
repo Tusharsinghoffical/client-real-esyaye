@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     default: 'Signature Aura™ Developers · Luxury Real Estate & Advisory | Pune & Mumbai',
     template: '%s | Signature Aura™ Developers',
   },
-  description: 'Signature Aura Developers (Signature Aura Pvt. Ltd.) provides bespoke luxury real estate advisory, 30-year forensic title due diligence, trophy sea-facing penthouses, and Grade-A IT parks across Pune Baner-Sus, Mumbai Worli, Delhi NCR, and Goa. MahaRERA: A52100039218.',
+  description: 'Signature Aura Developers (Signature Aura Pvt. Ltd.) provides bespoke luxury real estate advisory, 30-year forensic title due diligence, trophy sea-facing penthouses, and Grade-A IT parks across Pune Baner-Sus, Mumbai Worli, Delhi NCR, and Goa.',
   applicationName: 'Signature Aura Developers',
   authors: [{ name: 'Signature Aura Pvt. Ltd.', url: BASE_URL }],
   creator: 'Signature Aura Pvt. Ltd.',
@@ -74,12 +74,11 @@ export const metadata: Metadata = {
     'goa luxury villas assagao',
     '30 year property title due diligence',
     'nri property investment india fema',
-    'maharera certified real estate agent a52100039218',
     'grade a commercial office bkc'
   ],
   openGraph: {
     title: 'Signature Aura™ Developers · Luxury Real Estate & Advisory',
-    description: 'Bespoke real estate consultancy, 30-year forensic title due diligence, trophy penthouses, and luxury villas in Pune, Mumbai, Delhi NCR, and Goa. MahaRERA: A52100039218.',
+    description: 'Bespoke real estate consultancy, 30-year forensic title due diligence, trophy penthouses, and luxury villas in Pune, Mumbai, Delhi NCR, and Goa.',
     url: BASE_URL,
     siteName: 'Signature Aura Developers',
     type: 'website',

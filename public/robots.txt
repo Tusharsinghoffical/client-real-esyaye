@@ -2,7 +2,6 @@
 # SIGNATURE AURA DEVELOPERS (SIGNATURE AURA PVT. LTD.) - ROBOTS.TXT
 # Standard: Modern 2026 AI Search & Crawler Governance Protocol
 # Canonical Domain: https://signatureaura.com
-# MahaRERA: A52100039218 | CIN: U70109PN2023PTC221045
 # ==============================================================================
 
 # ------------------------------------------------------------------------------

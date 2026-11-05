@@ -29,7 +29,7 @@ export default function TermsAndConditionsPage() {
           <section className="space-y-3">
             <h2 className="font-serif text-xl text-[#171717] font-medium">1. Nature of Advisory Services</h2>
             <p>
-              {BUSINESS_CONFIG.companyName} acts as a professional real estate consultancy and registered agent under RERA ({BUSINESS_CONFIG.reraRegistration}). The information, square footage metrics, floor plans, and pricing presented on this website are provided for discovery and evaluation purposes. Binding legal transactions occur solely upon execution of formal Sale Agreements, Registered Agreements for Sale, or registered Lease Deeds.
+              {BUSINESS_CONFIG.companyName} acts as a professional luxury real estate consultancy and advisory firm. The information, square footage metrics, floor plans, and pricing presented on this website are provided for discovery and evaluation purposes. Binding legal transactions occur solely upon execution of formal Sale Agreements, Registered Agreements for Sale, or registered Lease Deeds.
             </p>
           </section>
 

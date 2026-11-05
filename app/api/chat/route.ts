@@ -55,7 +55,7 @@ function buildStructuredRagAnswer(query: string, ragResult: ReturnType<typeof re
   ) {
     answer = `### Welcome to Signature Aura Developers (Signature Aura™)
 
-Namaste! Welcome to **Signature Aura Pvt. Ltd.**, your trusted MahaRERA-certified luxury real estate advisory (\`A52100039218\`) headquartered at **Millennium Towers, Baner-Sus, Pune**.
+Namaste! Welcome to **Signature Aura Pvt. Ltd.**, your trusted luxury real estate advisory headquartered at **Millennium Towers, Baner-Sus, Pune**.
 
 How can I assist your real estate journey today? You can ask me about:
 
@@ -152,7 +152,6 @@ We invite you to consult directly with our Founding Directors:
 • **Direct Phone:** **${BUSINESS_CONFIG.phoneNumber}**
 • **Email:** **${BUSINESS_CONFIG.email}**
 • **WhatsApp Concierge:** Instant response with Senior Partner Rakesh Desale Patil: [Chat on WhatsApp](${directWhatsApp})
-• **MahaRERA Registration:** \`A52100039218\` · CIN: \`U70109PN2023PTC221045\`
 
 Office Hours: Monday – Saturday, 9:30 AM to 7:30 PM. Would you like to schedule a private advisory call or office visit?`;
   }

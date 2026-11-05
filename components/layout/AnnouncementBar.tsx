@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Phone, X, ShieldCheck, Sparkles } from 'lucide-react';
+import { Phone, X, Sparkles } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/lib/config';
 
 export default function AnnouncementBar() {
@@ -39,11 +39,6 @@ export default function AnnouncementBar() {
 
         {/* Right: Quick Concierge Contact & Dismiss */}
         <div className="hidden md:flex items-center gap-5 flex-shrink-0">
-          <div className="flex items-center gap-1.5 text-stone-400">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#B99A63]" />
-            <span>{BUSINESS_CONFIG.reraRegistration.split('|')[0].trim()}</span>
-          </div>
-          <span className="text-stone-600">|</span>
           <a 
             href={`tel:${BUSINESS_CONFIG.phoneRaw}`} 
             className="flex items-center gap-1.5 text-stone-300 hover:text-[#C5A869] transition-colors"

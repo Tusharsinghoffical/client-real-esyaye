@@ -167,7 +167,7 @@ function ContactFormContent() {
         {/* Regulatory note */}
         <div className="p-4 bg-[#F5F3EF] border border-[#E8E5DF] rounded-xl text-xs text-stone-600 flex items-center gap-3">
           <ShieldCheck className="w-5 h-5 text-[#B99A63] flex-shrink-0" />
-          <span>{BUSINESS_CONFIG.reraRegistration}. Certified real estate agency adhering to statutory norms.</span>
+          <span>Certified luxury real estate advisory adhering to statutory standards.</span>
         </div>
 
       </div>

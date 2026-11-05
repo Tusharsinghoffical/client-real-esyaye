@@ -6,10 +6,6 @@ import {
   Mail, 
   MapPin, 
   Clock, 
-  ShieldCheck,
-  Building2,
-  Lock,
-  Globe2,
   ArrowUpRight,
   MessageSquare
 } from 'lucide-react';
@@ -20,53 +16,6 @@ export default function Footer() {
     <footer className="bg-[#121214] text-[#FAF9F5] border-t border-[#262629] relative overflow-hidden">
       {/* Subtle architectural gold accent line */}
       <div className="h-[2px] w-full bg-linear-to-r from-transparent via-[#B99A63]/60 to-transparent" />
-
-      {/* Top High-Trust Accreditation Strip */}
-      <div className="border-b border-[#222225] bg-[#161619]/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-[#202024] border border-[#B99A63]/30 flex items-center justify-center shrink-0 text-[#B99A63]">
-                <ShieldCheck className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="font-semibold text-white tracking-wide">MahaRERA Registered</p>
-                <p className="text-stone-400 text-[11px] font-mono">A52100039218</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-[#202024] border border-[#B99A63]/30 flex items-center justify-center shrink-0 text-[#B99A63]">
-                <Building2 className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="font-semibold text-white tracking-wide">Corporate CIN</p>
-                <p className="text-stone-400 text-[11px] font-mono">U70109PN2023PTC221045</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-[#202024] border border-[#B99A63]/30 flex items-center justify-center shrink-0 text-[#B99A63]">
-                <Lock className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="font-semibold text-white tracking-wide">Absolute Discretion</p>
-                <p className="text-stone-400 text-[11px]">Strict NDA & Privacy Protocol</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-[#202024] border border-[#B99A63]/30 flex items-center justify-center shrink-0 text-[#B99A63]">
-                <Globe2 className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="font-semibold text-white tracking-wide">NRI & Global Advisory</p>
-                <p className="text-stone-400 text-[11px]">Direct Repatriation Support</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-20 md:pb-12">
         {/* Main 4-Column Architectural Grid */}
@@ -230,13 +179,6 @@ export default function Footer() {
             </ul>
           </div>
 
-        </div>
-
-        {/* MahaRERA Statutory Regulatory Disclaimer */}
-        <div className="py-6 border-b border-[#242428] text-[11px] text-stone-400 leading-relaxed">
-          <p>
-            <strong className="text-stone-300 font-medium">Statutory Regulatory Disclosure:</strong> Signature Aura Developers is registered under MahaRERA No. <span className="text-[#E8D39E] font-mono">A52100039218</span> and Corporate Identification Number <span className="text-[#E8D39E] font-mono">U70109PN2023PTC221045</span>. All architectural plans, specifications, layouts, visual representations, and pricing indications are curated solely for preliminary informational purposes and subject to statutory approvals and definitive sale deeds. Discretionary private advisory strictly complies with the Real Estate (Regulation and Development) Act, 2016.
-          </p>
         </div>
 
         {/* Bottom Bar: Copyright, Policies & Internal Portal */}

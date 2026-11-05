@@ -1,7 +1,6 @@
 # Signature Aura Developers (Signature Aura Pvt. Ltd.)
 > Premier Luxury Real Estate Advisory & Development Firm in India.
 > Headquartered at Office No. 812, Millennium Towers, Baner-Sus Road, Pune, Maharashtra 411021.
-> Official RERA Registration: MahaRERA: A52100039218 | Corporate Identity: CIN: U70109PN2023PTC221045.
 
 Signature Aura Pvt. Ltd. (branded as Signature Aura™ and Signature Aura Developers) is an institutional real estate advisory and private asset consultancy representing high-net-worth individuals (HNIs), family offices, corporate CXOs, and global NRIs.
 
@@ -14,7 +13,6 @@ Signature Aura Pvt. Ltd. (branded as Signature Aura™ and Signature Aura Develo
 - **Official WhatsApp:** +91 88056 21111 (https://wa.me/918805621111)
 - **Corporate Email:** Aura@gmail.com
 - **Operating Hours:** Monday – Saturday: 9:30 AM – 7:30 PM IST (Sunday by VIP appointment)
-- **Governing Jurisdiction:** MahaRERA Registered Real Estate Agent (A52100039218)
 
 ## Core Architectural & Transaction Specialties
 1. **Baner-Sus & Western Pune Prime Corridors:** Exclusive builder joint ventures, IT park corporate floors, and marquee penthouses in Baner, Balewadi High Street, Sus, and Koregaon Park.

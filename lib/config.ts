@@ -12,7 +12,7 @@ export const BUSINESS_CONFIG: BusinessConfig = {
   city: "Pune",
   state: "Maharashtra",
   pincode: "411021",
-  reraRegistration: "MahaRERA: A52100039218 | CIN: U70109PN2023PTC221045",
+  reraRegistration: "",
   announcementBarText: "Signature Aura™ Exclusive Residences & Penthouses in Baner, Balewadi, Koregaon Park & Assagao now available.",
   businessHours: "Monday – Saturday: 9:30 AM – 7:30 PM IST (Sunday by VIP appointment)",
   googleMapsUrl: "https://maps.google.com/?q=Millennium+Towers+Baner+Sus+Road+Pune+411021",

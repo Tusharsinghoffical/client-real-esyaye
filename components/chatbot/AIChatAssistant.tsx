@@ -298,7 +298,7 @@ We build high-performance, SEO-optimized web applications with modern architectu
       return {
         reply: `### Signature Aura™ Verified Real Estate Portfolio
 
-Headquartered at **Office No. 812, Millennium Towers, Baner-Sus, Pune** (MahaRERA: \`A52100039218\`):
+Headquartered at **Office No. 812, Millennium Towers, Baner-Sus, Pune**:
 
 • **Worli Sea Face Penthouses (Mumbai):** 5 BHK Triplex Sky-Residences (5,500 sq.ft.) with Arabian Sea vistas.
 • **Land & Plots (Pune Prime Corridors):** Over **250+ acres** aggregated across Baner-Sus, Hinjawadi & Balewadi for builder Joint Ventures (JV) and clear-title NA plots.

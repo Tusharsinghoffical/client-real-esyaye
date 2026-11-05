@@ -30,7 +30,7 @@ export default function PrivacyPolicyPage() {
           <section className="space-y-3">
             <h2 className="font-serif text-xl text-[#171717] font-medium">1. Introduction & Scope</h2>
             <p>
-              {BUSINESS_CONFIG.companyName} (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) operates as a certified real estate advisory and consultancy in India under {BUSINESS_CONFIG.reraRegistration}. We are committed to safeguarding the confidentiality and personal data of our prospective buyers, tenants, property owners, and corporate clients.
+              {BUSINESS_CONFIG.companyName} (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) operates as a premier luxury real estate advisory and consultancy in India. We are committed to safeguarding the confidentiality and personal data of our prospective buyers, tenants, property owners, and corporate clients.
             </p>
           </section>
 
