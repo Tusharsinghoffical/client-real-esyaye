@@ -77,6 +77,7 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
+    { name: 'Home', href: '/' },
     { name: 'Properties', href: '/properties' },
     { name: 'Projects', href: '/projects' },
     { name: 'Locations', href: '/locations' },
