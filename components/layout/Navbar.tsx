@@ -24,15 +24,15 @@ function BrandLogo({
     <Link 
       href="/" 
       onClick={onClick}
-      className="flex items-center shrink-0 mr-4 sm:mr-6 group focus:outline-hidden py-1"
+      className="flex items-center shrink-0 mr-3 sm:mr-5 group focus:outline-hidden py-1"
       aria-label="Signature Aura Developers"
     >
-      <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-[100px] lg:h-[100px] xl:w-[108px] xl:h-[108px] shrink-0 drop-shadow-[0_4px_20px_rgba(0,0,0,0.65)] group-hover:scale-105 transition-transform duration-300">
+      <div className="relative w-[76px] h-[76px] sm:w-[88px] sm:h-[88px] md:w-[98px] md:h-[98px] lg:w-[104px] lg:h-[104px] xl:w-[112px] xl:h-[112px] shrink-0 drop-shadow-[0_4px_22px_rgba(0,0,0,0.7)] group-hover:scale-105 transition-transform duration-300">
         <Image
-          src="/assets/branding/logo-circle.png"
+          src="/assets/branding/signature-aura-logo-official.png?v=20261105"
           alt="Signature Aura Developers"
           fill
-          sizes="(max-width: 640px) 80px, (max-width: 1024px) 96px, 108px"
+          sizes="(max-width: 640px) 90px, (max-width: 1024px) 100px, 112px"
           className="object-contain"
           priority={priority}
         />
@@ -96,7 +96,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[84px] sm:h-[96px] md:h-[108px] lg:h-[116px] xl:h-[120px]">
+        <div className="flex items-center justify-between h-[90px] sm:h-[100px] md:h-[110px] lg:h-[116px] xl:h-[120px]">
           
           {/* Brand Logo */}
           <BrandLogo />
@@ -204,7 +204,7 @@ export default function Navbar() {
           {/* Absolute positioning for the mobile menu content */}
           <div className="absolute top-0 left-0 right-0 w-full bg-[#0d0d10] text-[#FAF9F5] border-b border-[#262629] shadow-2xl max-h-[92dvh] overflow-y-auto overscroll-contain animate-in slide-in-from-top-1 duration-200 z-50">
             {/* Header row inside menu overlay aligned with top bar */}
-            <div className="flex items-center justify-between h-[84px] sm:h-[96px] px-4 sm:px-6 border-b border-[#262629] bg-[#0d0d10]">
+            <div className="flex items-center justify-between h-[90px] sm:h-[100px] px-4 sm:px-6 border-b border-[#262629] bg-[#0d0d10]">
               <BrandLogo 
                 onClick={() => setMobileMenuOpen(false)} 
                 priority={false}

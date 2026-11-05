@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   creator: 'Signature Aura Pvt. Ltd.',
   publisher: 'Signature Aura Pvt. Ltd.',
   icons: {
-    icon: '/assets/branding/logo-circle.png',
-    apple: '/assets/branding/logo-circle.png',
+    icon: '/assets/branding/signature-aura-logo-official.png',
+    apple: '/assets/branding/signature-aura-logo-official.png',
   },
   alternates: {
     canonical: BASE_URL,
@@ -128,7 +128,7 @@ export default function RootLayout({
         legalName: 'Signature Aura Pvt. Ltd.',
         alternateName: ['Signature Aura', 'Signature Aura Real Estate Advisory'],
         url: BASE_URL,
-        logo: `${BASE_URL}/assets/branding/logo-circle.png`,
+        logo: `${BASE_URL}/assets/branding/signature-aura-logo-official.png`,
         image: `${BASE_URL}/assets/branding/logo-combined.jpg`,
         description: 'Premier luxury real estate advisory and development firm specializing in 30-year forensic title due diligence, luxury penthouses, villas, and Grade-A commercial leasing in Pune, Mumbai, Delhi NCR, and Goa.',
         telephone: BUSINESS_CONFIG.phoneNumber,
