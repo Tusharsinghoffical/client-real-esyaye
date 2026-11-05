@@ -23,16 +23,24 @@ export default function Footer() {
           
           {/* Brand & Corporate Overview (5 Cols) */}
           <div className="lg:col-span-5 space-y-5">
-            <Link href="/" className="inline-block group focus:outline-hidden">
-              <div className="relative w-64 sm:w-72 md:w-80 lg:w-[340px] h-16 sm:h-20 md:h-24 lg:h-[88px] -ml-1 sm:-ml-2">
+            <Link href="/" className="inline-flex items-center gap-3.5 sm:gap-4 group focus:outline-hidden">
+              <div className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 shrink-0 drop-shadow-[0_4px_20px_rgba(0,0,0,0.65)] group-hover:scale-105 transition-transform duration-300">
                 <Image
-                  src="/assets/branding/logo-full-brand.png"
-                  alt="Signature Aura Developers - Premier Luxury Property Consultancy"
+                  src="/assets/branding/signature-aura-logo-official.png?v=20261105"
+                  alt="Signature Aura Developers"
                   fill
-                  sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 340px"
-                  className="object-contain object-left group-hover:scale-[1.02] transition-transform duration-300 drop-shadow-md"
+                  sizes="(max-width: 640px) 64px, (max-width: 1024px) 80px, 96px"
+                  className="object-contain"
                   priority
                 />
+              </div>
+              <div className="flex flex-col justify-center">
+                <span className="font-serif text-xl sm:text-2xl md:text-[26px] tracking-[0.06em] text-[#FAF9F5] group-hover:text-[#E8D39E] transition-colors leading-tight font-normal">
+                  SIGNATURE AURA
+                </span>
+                <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-[#B99A63] font-medium mt-0.5">
+                  Developers & Advisory
+                </span>
               </div>
             </Link>
 
