@@ -93,9 +93,9 @@ export default function AboutPage() {
           </div>
 
           <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-            <div className="relative w-20 h-20 sm:w-24 sm:h-24 mb-6 drop-shadow-xl">
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 mb-6 drop-shadow-2xl">
               <Image
-                src="/assets/branding/logo-circle.png"
+                src="/assets/branding/signature-aura-logo-official.png?v=20261105"
                 alt="Signature Aura Developers Emblem"
                 fill
                 className="object-contain"

@@ -179,9 +179,9 @@ export default function HomePage() {
             
             {/* Editorial kicker with SA Emblem */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full border border-white/20 text-stone-200 text-xs tracking-widest uppercase mb-4 sm:mb-6 shadow-md">
-              <div className="relative w-6 h-6 shrink-0 drop-shadow-sm">
+              <div className="relative w-7 h-7 sm:w-8 sm:h-8 shrink-0 drop-shadow-sm">
                 <Image
-                  src="/assets/branding/logo-circle.png"
+                  src="/assets/branding/signature-aura-logo-official.png?v=20261105"
                   alt="Signature Aura Developers Emblem"
                   fill
                   className="object-contain"

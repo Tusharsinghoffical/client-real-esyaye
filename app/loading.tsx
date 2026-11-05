@@ -6,12 +6,12 @@ export default function Loading() {
     <div className="min-h-screen bg-[#FAF9F5] flex items-center justify-center p-4">
       <div className="text-center flex flex-col items-center space-y-4">
         {/* Glowing circular logo container */}
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 animate-pulse">
+        <div className="relative w-24 h-24 sm:w-28 sm:h-28 animate-pulse drop-shadow-xl">
           <Image
-            src="/assets/branding/logo-circle.png"
+            src="/assets/branding/signature-aura-logo-official.png?v=20261105"
             alt="Signature Aura Developers"
             fill
-            className="object-contain drop-shadow-md"
+            className="object-contain"
             priority
           />
         </div>

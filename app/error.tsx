@@ -20,9 +20,9 @@ export default function ErrorBoundary({
   return (
     <div className="min-h-screen bg-[#FAF9F5] text-[#171717] font-sans flex items-center justify-center p-4">
       <div className="bg-white border border-[#E8E5DF] rounded-3xl p-8 sm:p-12 shadow-sm max-w-xl w-full text-center space-y-6">
-        <div className="relative w-16 h-16 mx-auto drop-shadow-sm">
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 mx-auto drop-shadow-sm">
           <Image
-            src="/assets/branding/logo-circle.png"
+            src="/assets/branding/signature-aura-logo-official.png?v=20261105"
             alt="Signature Aura Developers"
             fill
             className="object-contain"

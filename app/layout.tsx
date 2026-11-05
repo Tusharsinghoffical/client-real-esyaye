@@ -129,7 +129,7 @@ export default function RootLayout({
         alternateName: ['Signature Aura', 'Signature Aura Real Estate Advisory'],
         url: BASE_URL,
         logo: `${BASE_URL}/assets/branding/signature-aura-logo-official.png`,
-        image: `${BASE_URL}/assets/branding/logo-combined.jpg`,
+        image: `${BASE_URL}/assets/branding/signature-aura-logo-official.png`,
         description: 'Premier luxury real estate advisory and development firm specializing in 30-year forensic title due diligence, luxury penthouses, villas, and Grade-A commercial leasing in Pune, Mumbai, Delhi NCR, and Goa.',
         telephone: BUSINESS_CONFIG.phoneNumber,
         email: BUSINESS_CONFIG.email,

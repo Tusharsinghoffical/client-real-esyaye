@@ -98,9 +98,9 @@ export default function SiteVisitModal({
         </button>
 
         <div className="mb-6 flex items-start gap-3.5">
-          <div className="relative w-12 h-12 shrink-0 drop-shadow-sm">
+          <div className="relative w-12 h-12 sm:w-14 sm:h-14 shrink-0 drop-shadow-sm">
             <Image
-              src="/assets/branding/logo-circle.png"
+              src="/assets/branding/signature-aura-logo-official.png?v=20261105"
               alt="Signature Aura Developers"
               fill
               className="object-contain"

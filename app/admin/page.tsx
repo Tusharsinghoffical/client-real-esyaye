@@ -531,12 +531,12 @@ export default function AdminPage() {
     return (
       <div className="min-h-screen bg-[#171717] flex items-center justify-center p-4">
         <div className="w-full max-w-md bg-[#222222] border border-[#333333] rounded-2xl p-8 shadow-2xl text-center space-y-6">
-          <div className="relative w-56 h-28 mx-auto rounded-xl overflow-hidden border border-[#B99A63]/40 shadow-lg bg-black">
+          <div className="relative w-28 h-28 mx-auto drop-shadow-2xl">
             <Image
-              src="/assets/branding/logo-combined.jpg"
+              src="/assets/branding/signature-aura-logo-official.png?v=20261105"
               alt="Signature Aura Developers"
               fill
-              className="object-contain p-1"
+              className="object-contain"
               priority
             />
           </div>
@@ -610,9 +610,9 @@ export default function AdminPage() {
           
           <div className="flex items-center gap-3">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="relative w-8 h-8 shrink-0 drop-shadow-sm">
+              <div className="relative w-9 h-9 sm:w-10 sm:h-10 shrink-0 drop-shadow-sm">
                 <Image
-                  src="/assets/branding/logo-circle.png"
+                  src="/assets/branding/signature-aura-logo-official.png?v=20261105"
                   alt="Signature Aura Developers"
                   fill
                   className="object-contain"
