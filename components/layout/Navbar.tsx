@@ -13,58 +13,29 @@ import {
 } from 'lucide-react';
 import { BUSINESS_CONFIG } from '@/lib/config';
 
-function RotatingBrandLogo({ 
-  logoMode, 
-  onClick 
+function BrandLogo({ 
+  onClick, 
+  priority = true,
 }: { 
-  logoMode: 'brand' | 'text'; 
   onClick?: () => void; 
+  priority?: boolean;
 }) {
   return (
     <Link 
       href="/" 
       onClick={onClick}
-      className="relative w-40 sm:w-48 md:w-56 lg:w-64 xl:w-72 h-11 sm:h-12 md:h-13 lg:h-14 xl:h-[58px] flex items-center shrink-0 mr-2 sm:mr-4 group focus:outline-hidden"
+      className="flex items-center shrink-0 mr-4 sm:mr-6 group focus:outline-hidden py-1"
       aria-label="Signature Aura Developers"
     >
-      {/* 1. Full Brand Logo: 3D SA Emblem + Signature Aura Developers (Shown First) */}
-      <div 
-        className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${
-          logoMode === 'brand' 
-            ? 'opacity-100 scale-100 pointer-events-auto' 
-            : 'opacity-0 scale-95 pointer-events-none'
-        }`}
-      >
-        <div className="relative w-full h-full shrink-0 drop-shadow-md group-hover:scale-[1.02] transition-transform duration-300">
-          <Image
-            src="/assets/branding/logo-full-brand.png"
-            alt="Signature Aura Developers"
-            fill
-            sizes="(max-width: 640px) 192px, 288px"
-            className="object-contain object-left"
-            priority
-          />
-        </div>
-      </div>
-
-      {/* 2. Full Brand Wordmark Banner: SIGNATURE AURA DEVELOPERS (Shown after 20s) */}
-      <div 
-        className={`absolute inset-0 flex items-center transition-all duration-700 ease-in-out ${
-          logoMode === 'text' 
-            ? 'opacity-100 scale-100 pointer-events-auto' 
-            : 'opacity-0 scale-95 pointer-events-none'
-        }`}
-      >
-        <div className="relative w-full h-full shrink-0 drop-shadow-xs group-hover:scale-[1.02] transition-transform duration-300">
-          <Image
-            src="/assets/branding/logo-text.png"
-            alt="Signature Aura Developers"
-            fill
-            sizes="(max-width: 640px) 192px, 288px"
-            className="object-contain object-left"
-            priority
-          />
-        </div>
+      <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-[100px] lg:h-[100px] xl:w-[108px] xl:h-[108px] shrink-0 drop-shadow-[0_4px_20px_rgba(0,0,0,0.65)] group-hover:scale-105 transition-transform duration-300">
+        <Image
+          src="/assets/branding/logo-circle.png"
+          alt="Signature Aura Developers"
+          fill
+          sizes="(max-width: 640px) 80px, (max-width: 1024px) 96px, 108px"
+          className="object-contain"
+          priority={priority}
+        />
       </div>
     </Link>
   );
@@ -74,17 +45,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [savedCount, setSavedCount] = useState(0);
-  const [logoMode, setLogoMode] = useState<'brand' | 'text'>('brand');
   const pathname = usePathname();
-
-  // Automatic logo swap every 20 seconds without page refresh or user interaction
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setLogoMode((prev) => (prev === 'brand' ? 'text' : 'brand'));
-    }, 20000);
-
-    return () => clearInterval(timer);
-  }, []);
 
   // Scroll detection
   useEffect(() => {
@@ -127,35 +88,35 @@ export default function Navbar() {
   return (
     <header 
       style={{ position: 'sticky', top: 0, zIndex: 30 }}
-      className={`sticky top-0 left-0 right-0 w-full z-30 transition-all duration-300 ${
+      className={`sticky top-0 left-0 right-0 w-full z-30 transition-colors duration-300 ${
         isScrolled
-          ? 'bg-[#121214]/95 backdrop-blur-md shadow-2xl border-b border-[#262629]' 
-          : 'bg-[#121214]/90 backdrop-blur-sm border-b border-[#262629]/80'
+          ? 'bg-[#0d0d10]/95 backdrop-blur-xl shadow-2xl border-b border-[#24242a]' 
+          : 'bg-[#0d0d10]/85 backdrop-blur-md border-b border-[#24242a]/80'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[72px] sm:h-[76px] md:h-20 lg:h-[84px] xl:h-[90px]">
+        <div className="flex items-center justify-between h-[84px] sm:h-[96px] md:h-[108px] lg:h-[116px] xl:h-[120px]">
           
-          {/* Automated Swapping Brand Logo (Emblem <-> Text every 20s) */}
-          <RotatingBrandLogo logoMode={logoMode} />
+          {/* Brand Logo */}
+          <BrandLogo />
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-7">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-8">
             {navLinks.map((link) => {
               const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-xs xl:text-[13px] uppercase tracking-[0.14em] transition-colors relative py-1.5 ${
+                  className={`text-[11px] xl:text-xs uppercase tracking-[0.18em] transition-all relative py-2 font-medium ${
                     isActive 
-                      ? 'text-[#FAF9F5] font-bold' 
-                      : 'text-stone-300 hover:text-[#E8D39E] font-medium'
+                      ? 'text-[#FAF9F5] font-semibold' 
+                      : 'text-stone-300 hover:text-[#E8D39E]'
                   }`}
                 >
                   {link.name}
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-[2px] bg-linear-to-r from-[#B99A63] to-[#E8D39E] rounded-full" />
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-[2px] bg-linear-to-r from-[#B99A63] to-[#E8D39E] rounded-full shadow-[0_0_8px_rgba(185,154,99,0.5)]" />
                   )}
                 </Link>
               );
@@ -163,17 +124,17 @@ export default function Navbar() {
           </nav>
 
           {/* Right Header Actions */}
-          <div className="hidden lg:flex items-center gap-3 xl:gap-4">
+          <div className="hidden lg:flex items-center gap-3.5 xl:gap-4">
             {/* Saved properties button */}
             <Link 
               href="/properties?filter=saved"
-              className="relative p-2 text-stone-300 hover:text-white hover:bg-white/10 rounded-full transition-all touch-target"
+              className="relative w-10 h-10 xl:w-11 xl:h-11 flex items-center justify-center rounded-full bg-[#18181c] border border-[#2b2b32] hover:border-[#B99A63]/50 text-stone-300 hover:text-[#E8D39E] transition-all shadow-sm"
               title="Saved Properties"
               aria-label={`View saved properties (${savedCount})`}
             >
-              <Heart className="w-5 h-5" />
+              <Heart className="w-4 h-4 xl:w-4.5 xl:h-4.5" />
               {savedCount > 0 && (
-                <span className="absolute top-0 right-0 bg-[#B99A63] text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-xs">
+                <span className="absolute -top-1 -right-1 bg-linear-to-r from-[#B99A63] to-[#E8D39E] text-[#0D0D10] text-[10px] w-4 h-4 rounded-full flex items-center justify-center font-bold shadow-xs">
                   {savedCount}
                 </span>
               )}
@@ -182,23 +143,23 @@ export default function Navbar() {
             {/* Direct Call Concierge CTA */}
             <a
               href={`tel:${BUSINESS_CONFIG.phoneRaw}`}
-              className="inline-flex items-center gap-1.5 xl:gap-2 bg-[#202024] hover:bg-[#B99A63] text-[#FAF9F5] hover:text-[#121214] border border-[#B99A63]/50 text-xs font-semibold tracking-wider uppercase px-4 py-2.5 rounded-full transition-all shadow-sm hover:shadow min-h-[40px]"
+              className="inline-flex items-center gap-2 bg-linear-to-r from-[#B99A63] via-[#C8AA6E] to-[#E8D39E] hover:from-[#C8AA6E] hover:to-[#FAF9F5] text-[#0D0D10] text-xs font-semibold tracking-wider uppercase px-5 py-2.5 rounded-full transition-all duration-300 shadow-[0_2px_15px_rgba(185,154,99,0.25)] hover:shadow-[0_4px_22px_rgba(185,154,99,0.4)] hover:scale-[1.02] active:scale-[0.98] min-h-[42px]"
             >
-              <Phone className="w-3.5 h-3.5 text-[#B99A63]" />
+              <Phone className="w-3.5 h-3.5 text-[#0D0D10]" />
               <span>Schedule Call</span>
             </a>
           </div>
 
           {/* Mobile & Tablet Header Controls (Touch targets >= 44x44px) */}
-          <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden shrink-0">
+          <div className="flex items-center gap-2 lg:hidden shrink-0">
             <Link
               href="/properties?filter=saved"
-              className="relative w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-stone-300 border border-[#262629] bg-[#161619] rounded-lg"
+              className="relative w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-stone-300 border border-[#262629] bg-[#161619] rounded-xl hover:border-[#B99A63]/50 transition-colors"
               aria-label={`Saved properties (${savedCount})`}
             >
               <Heart className="w-4 h-4 text-[#B99A63]" />
               {savedCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-[#B99A63] text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-linear-to-r from-[#B99A63] to-[#E8D39E] text-[#0D0D10] text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">
                   {savedCount}
                 </span>
               )}
@@ -207,16 +168,16 @@ export default function Navbar() {
             <a
               href={`tel:${BUSINESS_CONFIG.phoneRaw}`}
               aria-label="Call concierge desk"
-              className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-stone-300 border border-[#262629] bg-[#161619] rounded-lg"
+              className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-stone-300 border border-[#262629] bg-[#161619] rounded-xl hover:border-[#B99A63]/50 transition-colors"
             >
-              <Phone className="w-4 h-4" />
+              <Phone className="w-4 h-4 text-[#B99A63]" />
             </a>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
-              className="w-9 h-9 sm:w-11 sm:h-11 flex items-center justify-center text-stone-300 hover:text-white transition-colors border border-[#262629] bg-[#161619] rounded-lg focus:outline-hidden"
+              className="w-10 h-10 sm:w-11 sm:h-11 flex items-center justify-center text-stone-300 hover:text-white transition-colors border border-[#262629] bg-[#161619] rounded-xl focus:outline-hidden"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -240,12 +201,12 @@ export default function Navbar() {
           />
 
           {/* Absolute positioning for the mobile menu content */}
-          <div className="absolute top-0 left-0 right-0 w-full bg-[#121214] text-[#FAF9F5] border-b border-[#262629] shadow-2xl max-h-[92dvh] overflow-y-auto overscroll-contain animate-in slide-in-from-top-1 duration-200 z-50">
+          <div className="absolute top-0 left-0 right-0 w-full bg-[#0d0d10] text-[#FAF9F5] border-b border-[#262629] shadow-2xl max-h-[92dvh] overflow-y-auto overscroll-contain animate-in slide-in-from-top-1 duration-200 z-50">
             {/* Header row inside menu overlay aligned with top bar */}
-            <div className="flex items-center justify-between h-[72px] sm:h-[76px] md:h-20 px-4 sm:px-6 border-b border-[#262629] bg-[#121214]">
-              <RotatingBrandLogo 
-                logoMode={logoMode} 
+            <div className="flex items-center justify-between h-[84px] sm:h-[96px] px-4 sm:px-6 border-b border-[#262629] bg-[#0d0d10]">
+              <BrandLogo 
                 onClick={() => setMobileMenuOpen(false)} 
+                priority={false}
               />
 
               <div className="flex items-center gap-1.5 shrink-0">
