@@ -191,7 +191,7 @@ export default function AdminPage() {
         setIsRealtimeConnected(false);
       };
     } catch {
-      setIsRealtimeConnected(false);
+      // EventSource initialization error: fallback polling handles sync
     }
 
     // Fallback polling every 10 seconds
