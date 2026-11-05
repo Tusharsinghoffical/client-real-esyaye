@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import crypto from 'node:crypto';
-import { DatabaseSync } from 'node:sqlite';
+import crypto from 'crypto';
 import { 
   Property, 
   Lead, 
@@ -27,26 +26,172 @@ import { realtime } from '@/lib/realtime';
 // LOCAL SQLITE DATABASE CONNECTION & INITIALIZATION
 // -----------------------------------------------------------------------------
 
-declare global {
-  var __sqliteDbInstance: DatabaseSync | undefined;
+function createMemoryDbFallback(): any {
+  const defaultPassword = process.env.ADMIN_PASSWORD || 'Signature@2026';
+  const defaultSalt = 'a1b2c3d4e5f60718';
+  const defaultHash = crypto.scryptSync(defaultPassword, defaultSalt, 64).toString('hex');
+
+  const store = {
+    auth: [{ id: 'admin-1', username: 'admin', password_hash: defaultHash, salt: defaultSalt, updated_at: new Date().toISOString() }],
+    properties: new Map<string, any>(SAMPLE_PROPERTIES.map(p => [p.id, p])),
+    leads: new Map<string, any>(),
+    site_visits: new Map<string, any>(),
+    settings: new Map<string, string>([['business_config', JSON.stringify(BUSINESS_CONFIG)]]),
+    projects: new Map<string, any>(SAMPLE_PROJECTS.map(p => [p.id, p])),
+    locations: new Map<string, any>(SAMPLE_LOCATIONS.map(p => [p.id, p])),
+    testimonials: new Map<string, any>(SAMPLE_TESTIMONIALS.map(p => [p.id, p]))
+  };
+
+  return {
+    exec: (_sql: string) => {},
+    close: () => {},
+    prepare: (sql: string) => ({
+      run: (...params: any[]) => {
+        if (sql.includes('INSERT') && sql.includes('properties')) {
+          try {
+            const data = JSON.parse(params[11]);
+            store.properties.set(params[0], data);
+          } catch {}
+        }
+        if (sql.includes('UPDATE properties SET data = ? WHERE id = ?')) {
+          try {
+            const data = JSON.parse(params[0]);
+            store.properties.set(params[1], data);
+          } catch {}
+        }
+        if (sql.includes('DELETE FROM properties WHERE id = ?')) {
+          store.properties.delete(params[0]);
+        }
+        if (sql.includes('INSERT') && sql.includes('leads')) {
+          store.leads.set(params[0], {
+            id: params[0], fullName: params[1], phone: params[2], email: params[3], leadSource: params[4],
+            propertyId: params[5], propertyTitle: params[6], budget: params[7], preferredLocation: params[8],
+            message: params[9], leadStatus: params[10], preferredVisitDate: params[11], internalNotes: [params[12]],
+            createdAt: params[13]
+          });
+        }
+        if (sql.includes('UPDATE leads SET lead_status = ? WHERE id = ?')) {
+          const l = store.leads.get(params[1]);
+          if (l) l.leadStatus = params[0];
+        }
+        if (sql.includes('INSERT') && sql.includes('site_visits')) {
+          store.site_visits.set(params[0], {
+            id: params[0], fullName: params[1], phone: params[2], email: params[3], propertyId: params[4],
+            propertyTitle: params[5], visitDate: params[6], timeSlot: params[7], numberOfVisitors: params[8],
+            pickupRequired: Boolean(params[9]), status: params[10], notes: params[11], createdAt: params[12]
+          });
+        }
+        if (sql.includes('UPDATE site_visits SET status = ? WHERE id = ?')) {
+          const v = store.site_visits.get(params[1]);
+          if (v) v.status = params[0];
+        }
+        if (sql.includes('settings')) {
+          store.settings.set(params[0] || 'business_config', params[1] || params[0]);
+        }
+        if (sql.includes('admin_auth')) {
+          store.auth[0] = { id: 'admin-1', username: 'admin', password_hash: params[0], salt: params[1], updated_at: params[2] };
+        }
+        return { changes: 1 };
+      },
+      all: (...params: any[]) => {
+        if (sql.includes('FROM properties')) {
+          let list = Array.from(store.properties.values());
+          if (sql.includes('WHERE')) {
+            if (sql.includes('id != ?')) list = list.filter(p => p.id !== params[0]);
+            if (sql.includes('is_published = 1')) list = list.filter(p => p.isPublished);
+          }
+          return list.map(p => ({ data: JSON.stringify(p) }));
+        }
+        if (sql.includes('FROM leads')) {
+          return Array.from(store.leads.values()).map(l => ({
+            id: l.id, full_name: l.fullName, phone: l.phone, email: l.email, lead_source: l.leadSource,
+            property_id: l.propertyId, property_title: l.propertyTitle, budget: l.budget, preferred_location: l.preferredLocation,
+            message: l.message, lead_status: l.leadStatus, preferred_visit_date: l.preferredVisitDate,
+            internal_notes: JSON.stringify(l.internalNotes || []), created_at: l.createdAt
+          }));
+        }
+        if (sql.includes('FROM site_visits')) {
+          return Array.from(store.site_visits.values()).map(v => ({
+            id: v.id, full_name: v.fullName, phone: v.phone, email: v.email, property_id: v.propertyId,
+            property_title: v.propertyTitle, visit_date: v.visitDate, time_slot: v.timeSlot,
+            number_of_visitors: v.numberOfVisitors, pickup_required: v.pickupRequired ? 1 : 0,
+            status: v.status, notes: v.notes, created_at: v.createdAt
+          }));
+        }
+        if (sql.includes('FROM projects')) {
+          return Array.from(store.projects.values()).map(p => ({ data: JSON.stringify(p) }));
+        }
+        if (sql.includes('FROM locations')) {
+          return Array.from(store.locations.values()).map(p => ({ data: JSON.stringify(p) }));
+        }
+        if (sql.includes('FROM testimonials')) {
+          return Array.from(store.testimonials.values()).map(p => ({ data: JSON.stringify(p) }));
+        }
+        return [];
+      },
+      get: (...params: any[]) => {
+        if (sql.includes('COUNT(*)')) {
+          return { count: 1 };
+        }
+        if (sql.includes('FROM admin_auth')) {
+          return { password_hash: store.auth[0].password_hash, salt: store.auth[0].salt };
+        }
+        if (sql.includes('FROM properties')) {
+          const val = params[0];
+          const p = store.properties.get(val) || Array.from(store.properties.values()).find(x => x.slug === val);
+          return p ? { data: JSON.stringify(p) } : undefined;
+        }
+        if (sql.includes('FROM settings')) {
+          return { value: store.settings.get('business_config') || JSON.stringify(BUSINESS_CONFIG) };
+        }
+        return undefined;
+      }
+    })
+  };
 }
 
-export function getDatabase(): DatabaseSync {
+declare global {
+  var __sqliteDbInstance: any;
+}
+
+export function getDatabase(): any {
   if (global.__sqliteDbInstance) {
     return global.__sqliteDbInstance;
   }
 
-  const dbDir = path.join(process.cwd(), 'data');
+  const isVercel = process.env.VERCEL === '1';
+  const dbDir = isVercel ? '/tmp/data' : path.join(process.cwd(), 'data');
   if (!fs.existsSync(dbDir)) {
-    fs.mkdirSync(dbDir, { recursive: true });
+    try {
+      fs.mkdirSync(dbDir, { recursive: true });
+    } catch {}
   }
 
   const dbPath = path.join(dbDir, 'signature_aura.db');
-  const database = new DatabaseSync(dbPath);
 
-  // Performance optimizations
-  database.exec('PRAGMA journal_mode = WAL;');
-  database.exec('PRAGMA foreign_keys = ON;');
+  let DatabaseSyncClass: any = null;
+  try {
+    const sqliteModule = eval('require')('node:sqlite');
+    DatabaseSyncClass = sqliteModule.DatabaseSync;
+  } catch {}
+
+  let database: any;
+  if (DatabaseSyncClass) {
+    try {
+      database = new DatabaseSyncClass(dbPath);
+      database.exec('PRAGMA journal_mode = WAL;');
+      database.exec('PRAGMA foreign_keys = ON;');
+    } catch (e) {
+      console.warn('SQLite init fallback to memory store:', e);
+      database = createMemoryDbFallback();
+      global.__sqliteDbInstance = database;
+      return database;
+    }
+  } else {
+    database = createMemoryDbFallback();
+    global.__sqliteDbInstance = database;
+    return database;
+  }
 
   // Schema creation
   database.exec(`
@@ -367,7 +512,8 @@ export function resetDatabase(): void {
       global.__sqliteDbInstance = undefined;
     }
 
-    const dbDir = path.join(process.cwd(), 'data');
+    const isVercel = process.env.VERCEL === '1';
+    const dbDir = isVercel ? '/tmp/data' : path.join(process.cwd(), 'data');
     const files = ['signature_aura.db', 'signature_aura.db-wal', 'signature_aura.db-shm'];
     for (const f of files) {
       const p = path.join(dbDir, f);

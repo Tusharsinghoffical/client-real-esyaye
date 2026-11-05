@@ -32,7 +32,6 @@ import SiteVisitModal from '@/components/properties/SiteVisitModal';
 import PropertyCard from '@/components/properties/PropertyCard';
 import SharePageButton from '@/components/common/SharePageButton';
 import { SAMPLE_PROPERTIES } from '@/lib/data/sample-data';
-import { getPropertyBySlug, getSimilarProperties } from '@/lib/db';
 import { getWhatsAppLink } from '@/lib/config';
 import { Property } from '@/types/real-estate';
 
@@ -53,7 +52,7 @@ export default function PropertyDetailClient({
   slug: string; 
   initialProperty?: Property;
 }) {
-  const property = initialProperty || getPropertyBySlug(slug) || SAMPLE_PROPERTIES.find(p => p.slug === slug);
+  const property = initialProperty || SAMPLE_PROPERTIES.find(p => p.slug === slug);
 
   if (!property) {
     notFound();
@@ -94,7 +93,11 @@ export default function PropertyDetailClient({
   const [enquirySuccess, setEnquirySuccess] = useState(false);
   const [enquiryError, setEnquiryError] = useState('');
 
-  const similar = getSimilarProperties(property, 3);
+  const similar = SAMPLE_PROPERTIES.filter(p => 
+    p.id !== property.id && 
+    p.isPublished && 
+    (p.location.city === property.location.city || p.category === property.category || p.listingType === property.listingType)
+  ).slice(0, 3);
 
   const handleEnquirySubmit = async (e: React.FormEvent) => {
     e.preventDefault();
